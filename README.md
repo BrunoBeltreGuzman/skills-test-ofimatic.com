@@ -1,4 +1,4 @@
-# Backend Admin Crud
+# Backend
 
 **Prepare Data Base (mysql)**
 
@@ -20,4 +20,4 @@ npm i  or  npm install
 npm run dev
 ```
 
-# Frontend Admin Crud
+# Frontend
