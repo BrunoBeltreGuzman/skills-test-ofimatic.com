@@ -1,25 +1,16 @@
-import jwt from "jsonwebtoken";
+import jwt, { DecodeOptions } from "jsonwebtoken";
 const config = require("../../config/auth.config.js");
+import { Request, Response, NextFunction } from "express";
 
 class JsonWebToken {
        constructor() {}
 
-       signJwt(user) {
-              try {
-                     const token = jwt.sign({ user }, config.secret);
-                     return token;
-              } catch (error) {
-                     response.status(500).json({
-                            message: "Error Internal in the server",
-                            error: {
-                                   error,
-                            },
-                     });
-                     throw error;
-              }
+       signJwt(user: any) {
+              const token = jwt.sign({ user }, config.secret);
+              return token;
        }
 
-       verifyToken(request, response, next) {
+       verifyToken(request: any, response: any, next: NextFunction) {
               const token = request.headers["authorization"];
               if (!token) {
                      return response.status(403).send({
@@ -28,7 +19,7 @@ class JsonWebToken {
                      });
               }
               try {
-                     const decode = jwt.verify(token, config.secret);
+                     const decode: any = jwt.verify(token, config.secret);
                      request.user = decode.user;
                      next();
               } catch (error) {

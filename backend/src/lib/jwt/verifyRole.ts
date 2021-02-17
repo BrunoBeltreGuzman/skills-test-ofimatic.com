@@ -1,7 +1,9 @@
-class VerifyRole {
+import { Request, Response, NextFunction } from "express";
+
+export default class VerifyRole {
        constructor() {}
 
-       isUser(request, response, next) {
+       isUser(request: any, response: any, next: NextFunction) {
               console.log("Role: " + request.user.role[0].role);
               if (request.user.role[0].role === "user") {
                      next();
@@ -14,7 +16,7 @@ class VerifyRole {
               }
        }
 
-       isAdmin(request, response, next) {
+       isAdmin(request: any, response: any, next: NextFunction) {
               console.log("Role: " + request.user.role[0].role);
               if (request.user.role[0].role === "admin") {
                      next();
@@ -27,7 +29,7 @@ class VerifyRole {
               }
        }
 
-       isReader(request, response, next) {
+       isReader(request: any, response: any, next: NextFunction) {
               console.log("Role: " + request.user.role[0].role);
               if (request.user.role[0].role === "reader") {
                      next();
@@ -40,7 +42,7 @@ class VerifyRole {
               }
        }
 
-       isRole(request, response, next) {
+       isRole(request: any, response: any, next: NextFunction) {
               console.log("Role: " + request.user.role[0].role);
               if (request.user.role[0].role) {
                      next();
@@ -53,7 +55,7 @@ class VerifyRole {
               }
        }
 
-       isNotRole(request, response, next) {
+       isNotRole(request: any, response: any, next: NextFunction) {
               console.log("Role: " + request.user.role[0].role);
               if (!request.user.role[0].role) {
                      next();
@@ -67,7 +69,7 @@ class VerifyRole {
               }
        }
 
-       allRoles(request, response, next) {
+       allRoles(request: any, response: any, next: NextFunction) {
               console.log("Role: " + request.user.role[0].role);
               if (request.user.role[0].role) {
                      next();
@@ -80,9 +82,7 @@ class VerifyRole {
               }
        }
 
-       all(request, response, next) {
+       all(request: any, response: any, next: NextFunction) {
               next();
        }
 }
-
-module.exports = new VerifyRole();
