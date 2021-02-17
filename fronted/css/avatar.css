@@ -1,0 +1,34 @@
+.avatar-1 {
+       vertical-align: middle;
+       width: 150px;
+       height: 150px;
+       border-radius: 50%;
+}
+
+.avatar-2 {
+       vertical-align: middle;
+       width: 130px;
+       height: 130px;
+       border-radius: 50%;
+}
+
+.avatar-3 {
+       vertical-align: middle;
+       width: 110px;
+       height: 110px;
+       border-radius: 50%;
+}
+
+.avatar-4 {
+       vertical-align: middle;
+       width: 90px;
+       height: 90px;
+       border-radius: 50%;
+}
+
+.avatar-nav {
+       vertical-align: middle;
+       width: 25px;
+       height: 25px;
+       border-radius: 50%;
+}

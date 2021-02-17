@@ -1,0 +1,12 @@
+.signin {
+       background: rgb(30, 30, 30) !important;
+}
+
+.signup {
+}
+
+.imaSignUp {
+       border-radius: 5px;
+       width: 100%;
+       height: 100%;
+}
