@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+       <meta charset="UTF-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+       <!-- fonts -->
+       <link rel="preconnect" href="https://fonts.gstatic.com">
+       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+       <!-- bootstrap -->
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+              crossorigin="anonymous">
+       <!-- fontawesome -->
+       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+              integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+              crossorigin="anonymous">
+
+       <!-- Css -->
+       <link rel="stylesheet" href="./css/styles.css">
+       <link rel="stylesheet" href="./css/nav.css">
+       <link rel="stylesheet" href="./css/avatar.css">
+       <link rel="stylesheet" href="./css/mycss.css">
+       <title>Document</title>
+</head>
+
+<body>
+
+       <div>
+              <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                     <div class="container">
+                            <a class="navbar-brand" href="/">
+                                   <i class="fas fa-users"></i> Admin CRUD
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                                   aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                   <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                   <ul class="navbar-nav ml-auto">
+                                          <li class="nav-item dropdown">
+                                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                        role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        Users
+                                                 </a>
+                                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                        <a class="dropdown-item" href="/links">Add User</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="/links/add">List Users</a>
+                                                 </div>
+                                          </li>
+                                          <li class="nav-item">
+                                                 <a class="nav-link" href="/profile">Profile</a>
+                                          </li>
+                                          <li class="nav-item">
+                                                 <a class="nav-link" href="/logout">Logout</a>
+                                          </li>
+                                   </ul>
+                            </div>
+                     </div>
+              </nav>
+       </div>
+       <br>
+       <br>
+
+       <div class="container">
+              <div class="container ">
+                     <div class="card p-3">
+                            <div class="row">
+                                   <div class="col-md-12">
+                                          <div class="text-right">
+                                                 <div class="col text-right dropdown ">
+                                                        <button class="btn btn-light" type="button"
+                                                               id="dropdownMenuButton" data-toggle="dropdown"
+                                                               aria-haspopup="true" aria-expanded="false">
+                                                               <i class="fas fa-ellipsis-v"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                               <a class="dropdown-item" href="#"><i
+                                                                             class="fas fa-user-times"></i>
+                                                                      Delete account</a>
+                                                        </div>
+                                                 </div>
+                                          </div>
+                                   </div>
+                            </div>
+                            <form>
+                                   <div class="">
+                                          <a href=""><img src="./img/avatar.png" alt="Avatar" class="avatar-4"></a>
+                                          <br>
+                                          <button class="btn  btn-light"><i
+                                                        class="fas fa-cloud-upload-alt"></i></button>
+                                          <button class="btn  btn-light"><i
+                                                        class="fas fa-folder-minus"></i></i></button>
+                                   </div>
+
+                                   <div class="form-group">
+                                          <label for="name">Full Name</label>
+                                          <input type="text" class="form-control" id="name" placeholder="Name"
+                                                 required="text">
+                                          <small id="emailHelp" class="form-text text-muted">We'll never share your
+                                                 email with
+                                                 anyone else.</small>
+                                   </div>
+                                   <div class="form-group">
+                                          <label for="email">Email</label>
+                                          <input type="email" class="form-control" id="email" placeholder="Email"
+                                                 required="email">
+                                   </div>
+
+
+                                   <div id="accordion">
+                                          <div class="card">
+                                                 <div class="card-header" id="headingThree">
+                                                        <h5 class="mb-0">
+                                                               <button class="btn btn-light collapsed"
+                                                                      data-toggle="collapse"
+                                                                      data-target="#collapseDescription"
+                                                                      aria-expanded="false"
+                                                                      aria-controls="collapseDescription">
+                                                                      Informacion <i class="fas fa-angle-down"></i>
+                                                               </button>
+                                                        </h5>
+                                                 </div>
+                                                 <div id="collapseDescription" class="collapse"
+                                                        aria-labelledby="headingThree" data-parent="#accordion">
+                                                        <div class="card-body">
+
+                                                               <div class="form-group">
+                                                                      <label for="description">Description</label>
+                                                                      <textarea class="form-control" id="description"
+                                                                             placeholder="Description" required="text"
+                                                                             rows="3"></textarea>
+                                                               </div>
+                                                               <div class="form-group">
+                                                                      <label for="trabajo">Tabajo</label>
+                                                                      <input type="text" class="form-control"
+                                                                             id="trabajo" placeholder="Trabajo"
+                                                                             required="text">
+                                                               </div>
+                                                               <div class="form-group">
+                                                                      <label for="pais">Pais</label>
+                                                                      <input type="text" class="form-control" id="pais"
+                                                                             placeholder="Pais" required="text">
+                                                               </div>
+                                                               <div class="form-group">
+                                                                      <label for="tele">Telefono</label>
+                                                                      <input type="text" class="form-control" id="tele"
+                                                                             placeholder="Telefono" required="text">
+                                                               </div>
+
+                                                        </div>
+                                                 </div>
+                                          </div>
+                                   </div>
+
+
+                                   <div id="accordion">
+                                          <div class="card">
+                                                 <div class="card-header" id="headingThree">
+                                                        <h5 class="mb-0">
+                                                               <button class="btn btn-light collapsed"
+                                                                      data-toggle="collapse" data-target="#collapseUrl"
+                                                                      aria-expanded="false" aria-controls="collapseUrl">
+                                                                      Socials <i class="fas fa-angle-down"></i>
+                                                               </button>
+                                                        </h5>
+                                                 </div>
+                                                 <div id="collapseUrl" class="collapse" aria-labelledby="headingThree"
+                                                        data-parent="#accordion">
+                                                        <div class="card-body">
+                                                               <div class="form-group">
+                                                                      <label for="facebook">Facebook</label>
+                                                                      <input type="url" class="form-control"
+                                                                             id="facebook" placeholder="Facebook"
+                                                                             required="url">
+                                                               </div>
+
+                                                               <div class="form-group">
+                                                                      <label for="linkedin">LinkedIn</label>
+                                                                      <input type="url" class="form-control"
+                                                                             id="linkedin" placeholder="LinkedIn"
+                                                                             required="url">
+                                                               </div>
+
+                                                               <div class="form-group">
+                                                                      <label for="gitHub">GitHub</label>
+                                                                      <input type="url" class="form-control" id="gitHub"
+                                                                             placeholder="GitHub" required="url">
+                                                               </div>
+                                                        </div>
+                                                 </div>
+                                          </div>
+                                   </div>
+
+                                   <div id="accordion">
+                                          <div class="card">
+                                                 <div class="card-header" id="headingThree">
+                                                        <h5 class="mb-0">
+                                                               <button class="btn btn-light collapsed"
+                                                                      data-toggle="collapse"
+                                                                      data-target="#collapseWorks" aria-expanded="false"
+                                                                      aria-controls="collapseWorks">
+                                                                      Works <i class="fas fa-angle-down"></i>
+                                                               </button>
+                                                        </h5>
+                                                 </div>
+                                                 <div id="collapseWorks" class="collapse" aria-labelledby="headingThree"
+                                                        data-parent="#accordion">
+                                                        <div class="card-body">
+                                                               <div class="form-group">
+                                                                      <label for="work">Work</label>
+                                                                      <input type="text" class="form-control" id="work"
+                                                                             placeholder="Work" required="url">
+                                                               </div>
+                                                        </div>
+                                                 </div>
+                                          </div>
+                                   </div>
+
+                                   <div id="accordion">
+                                          <div class="card">
+                                                 <div class="card-header" id="headingThree">
+                                                        <h5 class="mb-0">
+                                                               <button class="btn btn-light collapsed"
+                                                                      data-toggle="collapse"
+                                                                      data-target="#collapseSkills"
+                                                                      aria-expanded="false"
+                                                                      aria-controls="collapseSkills">
+                                                                      Skills <i class="fas fa-angle-down"></i>
+                                                               </button>
+                                                        </h5>
+                                                 </div>
+                                                 <div id="collapseSkills" class="collapse"
+                                                        aria-labelledby="headingThree" data-parent="#accordion">
+                                                        <div class="card-body">
+                                                               <div class="form-group">
+                                                                      <label for="skill">Skill</label>
+                                                                      <input type="text" class="form-control" id="skill"
+                                                                             placeholder="Skill" required="url">
+                                                               </div>
+                                                        </div>
+                                                 </div>
+                                          </div>
+                                   </div>
+
+                                   <br>
+
+                                   <div>
+                                          <button class="btn btn-link">Change password</button>
+                                   </div>
+
+                                   <br>
+
+
+                                   <div class="col text-center mr-5 "><button type="submit"
+                                                 class="btn btn-secondary">Cancel</button>
+                                          <button type="submit" class="btn btn-primary ml-5">Save</button>
+                                   </div>
+                            </form>
+                     </div>
+              </div>
+       </div>
+
+       <br>
+       <br>
+
+
+       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+              integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+              crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+              integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+              crossorigin="anonymous"></script>
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+              integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+              crossorigin="anonymous"></script>
+
+</body>
+
+</html>
