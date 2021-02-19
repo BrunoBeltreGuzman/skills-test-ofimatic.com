@@ -59,6 +59,7 @@ npm i  or  npm install
 npm run dev
 ```
 
+<<<<<<< HEAD
 # Routers:
 
 Fetch ALL Records
@@ -148,3 +149,8 @@ $ npm start
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 **Vea algunas screenshot en la carpeta `partials`**
+=======
+# Frontend
+
+![Image](https://github.com/BrunoBeltreGuzman/skills-test-ofimatic.com/blob/master/partials/screenshot/Captura%20de%20pantalla_2021-02-18_09-34-50.png)
+>>>>>>> 02d1a280e36ec748699a2a92172cea3f2ef9788b
