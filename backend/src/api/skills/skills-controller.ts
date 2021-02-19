@@ -1,37 +1,69 @@
 import { Request, Response } from "express";
 import IContoller from "../IContoller";
-import Users from "./users";
+import Skills from "./skills";
 import Validator from "../../lib/validate/validator";
-import UsersModel from "./users-model";
-import IDAOUsers from "./IDAOUsers";
+import SkillsModel from "./skills-model";
+import IDAOUsers from "./IDAOSkills";
 import Errors from "../../exceptions/error/errors";
 
 const validator: Validator = new Validator();
-const modelUsers: IDAOUsers = new UsersModel();
+const modelSkills: IDAOUsers = new SkillsModel();
 
-export default class UsersController implements IContoller<Request, Response> {
+export default class SkillsController implements IContoller<Request, Response> {
        constructor() {}
 
-       /*
-              insert Users
-       */
        async insert(request: Request, response: Response): Promise<Response> {
-              const name = request.body.name;
-              const email = request.body.email;
-              let password = request.body.password;
-              if (
-                     validator.isValidate(name) &&
-                     validator.isValidate(email) &&
-                     validator.isValidate(password)
-              ) {
+              const skill: string = request.body.skill;
+              const user = request.body.user;
+              const id: number = 0;
+
+              if (validator.isValidate(skill) && validator.isValidate(user)) {
                      try {
-                            const user: Users = {
-                                   id: 0,
-                                   name,
-                                   email,
-                                   password,
+                            const newSkill: Skills = {
+                                   id,
+                                   skill,
+                                   user,
                             };
-                            const result = await modelUsers.insert(user);
+                            const result = await modelSkills.insert(newSkill);
+                            return response.status(200).json(result);
+                     } catch (error) {
+                            console.log(Errors.HandlingError(error));
+                            return response
+                                   .status(500)
+                                   .json(Errors.HandlingError(error));
+                     }
+              } else {
+                     return response.status(400).json({
+                            message: "Inputs incomplete, All input required",
+                            inputs: "skill, user",
+                            status: 400,
+                     });
+              }
+       }
+
+       async update(request: Request, response: Response): Promise<Response> {
+              const skill = request.body.skill;
+              const user = request.body.user;
+              let id: number;
+
+              if (validator.isNumber(request.params.id)) {
+                     id = parseInt(request.params.id);
+              } else {
+                     return response.status(400).json({
+                            message: "Inputs incomplete, All input required",
+                            inputs: "id, skill, user",
+                            status: 400,
+                     });
+              }
+
+              if (validator.isValidate(skill) && validator.isValidate(user)) {
+                     try {
+                            const newSkill: Skills = {
+                                   id,
+                                   skill,
+                                   user,
+                            };
+                            const result = await modelSkills.update(newSkill);
                             return response.status(200).json(result);
                      } catch (error) {
                             console.log(Errors.HandlingError(error));
@@ -48,60 +80,8 @@ export default class UsersController implements IContoller<Request, Response> {
               }
        }
 
-       /*
-              Update Users
-       */
-       async update(request: Request, response: Response): Promise<Response> {
-              const name = request.body.name;
-              const email = request.body.email;
-              let password = request.body.password;
-              let id: number;
-
-              if (validator.isNumber(request.params.id)) {
-                     id = parseInt(request.params.id);
-              } else {
-                     return response.status(400).json({
-                            message: "Inputs incomplete, All input required",
-                            inputs: "id, name, email, password",
-                            status: 400,
-                     });
-              }
-
-              if (
-                     validator.isValidate(name) &&
-                     validator.isValidate(email) &&
-                     validator.isValidate(password)
-              ) {
-                     try {
-                            const user: Users = {
-                                   id,
-                                   name,
-                                   email,
-                                   password,
-                            };
-                            const result = await modelUsers.update(user);
-                            return response.status(200).json(result);
-                     } catch (error) {
-                            console.log(Errors.HandlingError(error));
-                            return response
-                                   .status(500)
-                                   .json(Errors.HandlingError(error));
-                     }
-              } else {
-                     return response.status(400).json({
-                            message: "Inputs incomplete, All input required",
-                            inputs: "id, name, email, password",
-                            status: 400,
-                     });
-              }
-       }
-
-       /*
-              Delete Users
-       */
        async delete(request: Request, response: Response): Promise<Response> {
               let id: number;
-
               if (validator.isNumber(request.params.id)) {
                      id = parseInt(request.params.id);
               } else {
@@ -112,36 +92,32 @@ export default class UsersController implements IContoller<Request, Response> {
                      });
               }
               try {
-                     const result = await modelUsers.delete(id);
+                     const result = await modelSkills.delete(id);
                      return response.status(200).json(result);
               } catch (error) {
                      console.log(Errors.HandlingError(error));
-                     response.status(500).json(Errors.HandlingError(error));
-                     throw error;
-              }
-       }
-
-       /*
-              findAll Users 
-       */
-       async findAll(request: Request, response: Response): Promise<Response> {
-              try {
-                     const result: Users = await modelUsers.findAll();
-                     return response.status(200).json(result);
-              } catch (error) {
                      return response
                             .status(500)
                             .json(Errors.HandlingError(error));
               }
        }
 
-       /*
-              FindById Users
-       */
+       async findAll(request: Request, response: Response): Promise<Response> {
+              try {
+                     const result: Skills = await modelSkills.findAll();
+                     return response.status(200).json(result);
+              } catch (error) {
+                     console.log(Errors.HandlingError(error));
+                     return response
+                            .status(500)
+                            .json(Errors.HandlingError(error));
+              }
+       }
+
        async findById(request: Request, response: Response): Promise<Response> {
               try {
                      const id: number = parseInt(request.params.id);
-                     const result: Users = await modelUsers.findById(id);
+                     const result: Skills = await modelSkills.findById(id);
                      return response.status(200).json(result);
               } catch (error) {
                      console.log(Errors.HandlingError(error));
@@ -151,13 +127,13 @@ export default class UsersController implements IContoller<Request, Response> {
               }
        }
 
-       async findByName(
+       async findByUser(
               request: Request,
               response: Response
        ): Promise<Response> {
               try {
-                     const name: string = request.params.name;
-                     const result: Users = await modelUsers.findByName(name);
+                     const user: number = parseInt(request.params.user);
+                     const result: Skills = await modelSkills.findByUser(user);
                      return response.status(200).json(result);
               } catch (error) {
                      console.log(Errors.HandlingError(error));

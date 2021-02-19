@@ -20,7 +20,7 @@
 .intro {
        height: 100vh;
        color: #fff;
-       background-image: url("../img/wallpaperflare.com_wallpaper (1).jpg");
+       background-color: red;
        overflow: hidden;
        overflow: auto;
 }

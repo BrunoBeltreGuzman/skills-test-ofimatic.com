@@ -14,4 +14,6 @@ router.get("/", controllerUsers.findAll);
 
 router.get("/:id", controllerUsers.findById);
 
+router.get("/name/:name", controllerUsers.findByName);
+
 export default router;

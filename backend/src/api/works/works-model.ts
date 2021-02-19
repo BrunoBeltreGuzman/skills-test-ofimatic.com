@@ -1,25 +1,20 @@
 import ConnectinMySQL from "../../database/connectinMySQL/ConnectinMySQL";
 import { Pool } from "mysql2/promise";
-import Users from "./users";
-import IDAOUsers from "./IDAOUsers";
+import Works from "./works";
+import IDAOWorks from "./IDAOWorks";
 
-export default class UsersModel implements IDAOUsers {
+export default class WorksModel implements IDAOWorks {
        private connectinMySQL: Pool;
 
        constructor() {
               this.connectinMySQL = new ConnectinMySQL().getConnection();
        }
 
-       async insert(entity: Users): Promise<any> {
+       async insert(entity: Works): Promise<any> {
               try {
                      const result = await this.connectinMySQL.query({
-                            sql:
-                                   "INSERT INTO users (name, email, password) values (?,?,?)",
-                            values: [
-                                   entity.name,
-                                   entity.email,
-                                   entity.password,
-                            ],
+                            sql: "INSERT INTO works (work, user) values (?,?)",
+                            values: [entity.work, entity.user],
                      });
                      return result[0];
               } catch (error) {
@@ -27,17 +22,12 @@ export default class UsersModel implements IDAOUsers {
               }
        }
 
-       async update(entity: Users): Promise<any> {
+       async update(entity: Works): Promise<any> {
               try {
                      const result = await this.connectinMySQL.query({
                             sql:
-                                   "UPDATE users set name = ?, email = ?, password = ? WHERE id = ?",
-                            values: [
-                                   entity.name,
-                                   entity.email,
-                                   entity.password,
-                                   entity.id,
-                            ],
+                                   "UPDATE works set work = ?, user = ? WHERE id = ?",
+                            values: [entity.work, entity.user, entity.id],
                      });
                      return result[0];
               } catch (error) {
@@ -48,7 +38,7 @@ export default class UsersModel implements IDAOUsers {
        async delete(id: number): Promise<any> {
               try {
                      const result = await this.connectinMySQL.query({
-                            sql: "DELETE FROM users WHERE id = ?",
+                            sql: "DELETE FROM works WHERE id = ?",
                             values: [id],
                      });
                      return result[0];
@@ -60,7 +50,7 @@ export default class UsersModel implements IDAOUsers {
        async findAll(): Promise<any> {
               try {
                      const users = await this.connectinMySQL.query({
-                            sql: "SELECT * FROM users",
+                            sql: "SELECT * FROM works",
                      });
                      return users[0];
               } catch (error) {
@@ -70,16 +60,16 @@ export default class UsersModel implements IDAOUsers {
 
        async findById(id: number): Promise<any> {
               const users = await this.connectinMySQL.query({
-                     sql: "SELECT * FROM users where id = ?",
+                     sql: "SELECT * FROM works where id = ?",
                      values: [id],
               });
               return users[0];
        }
 
-       async findByName(name: string): Promise<any> {
+       async findByUser(user: number): Promise<any> {
               const users = await this.connectinMySQL.query({
-                     sql: "SELECT * FROM users where name = ?",
-                     values: [name],
+                     sql: "SELECT * FROM works where user = ?",
+                     values: [user],
               });
               return users[0];
        }

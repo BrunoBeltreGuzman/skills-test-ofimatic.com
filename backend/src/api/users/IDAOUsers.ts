@@ -5,4 +5,6 @@ export default interface IDAOUsers extends IDAO<Users, number> {
        /*
               New Functions:
        */
+
+       findByName(name: string): Promise<any>;
 }

@@ -1,37 +1,39 @@
 import { Request, Response } from "express";
 import IContoller from "../IContoller";
-import Users from "./users";
+import Works from "./works";
 import Validator from "../../lib/validate/validator";
-import UsersModel from "./users-model";
-import IDAOUsers from "./IDAOUsers";
+import SkillsModel from "./works-model";
+import IDAOWorks from "./IDAOWorks";
 import Errors from "../../exceptions/error/errors";
 
 const validator: Validator = new Validator();
-const modelUsers: IDAOUsers = new UsersModel();
+const modelWorks: IDAOWorks = new SkillsModel();
 
-export default class UsersController implements IContoller<Request, Response> {
+export default class WorksController implements IContoller<Request, Response> {
        constructor() {}
 
-       /*
-              insert Users
-       */
        async insert(request: Request, response: Response): Promise<Response> {
-              const name = request.body.name;
-              const email = request.body.email;
-              let password = request.body.password;
-              if (
-                     validator.isValidate(name) &&
-                     validator.isValidate(email) &&
-                     validator.isValidate(password)
-              ) {
+              const work: string = request.body.work;
+              let user: number = 0;
+              const id: number = 0;
+
+              if (validator.isNumber(request.body.user)) {
+                     user = parseInt(request.body.user);
+              } else {
+                     return response.status(400).json({
+                            message: "Inputs incomplete, All input required",
+                            inputs: "work, user",
+                            status: 400,
+                     });
+              }
+              if (validator.isValidate(work)) {
                      try {
-                            const user: Users = {
-                                   id: 0,
-                                   name,
-                                   email,
-                                   password,
+                            const newWork: Works = {
+                                   id,
+                                   work,
+                                   user,
                             };
-                            const result = await modelUsers.insert(user);
+                            const result = await modelWorks.insert(newWork);
                             return response.status(200).json(result);
                      } catch (error) {
                             console.log(Errors.HandlingError(error));
@@ -48,38 +50,31 @@ export default class UsersController implements IContoller<Request, Response> {
               }
        }
 
-       /*
-              Update Users
-       */
        async update(request: Request, response: Response): Promise<Response> {
-              const name = request.body.name;
-              const email = request.body.email;
-              let password = request.body.password;
+              const work: string = request.body.work;
+              let user: number = 0;
               let id: number;
-
-              if (validator.isNumber(request.params.id)) {
+              if (
+                     validator.isNumber(request.params.id) &&
+                     validator.isNumber(request.body.user)
+              ) {
                      id = parseInt(request.params.id);
+                     user = parseInt(request.body.user);
               } else {
                      return response.status(400).json({
                             message: "Inputs incomplete, All input required",
-                            inputs: "id, name, email, password",
+                            inputs: "id, work, user",
                             status: 400,
                      });
               }
-
-              if (
-                     validator.isValidate(name) &&
-                     validator.isValidate(email) &&
-                     validator.isValidate(password)
-              ) {
+              if (validator.isValidate(work)) {
                      try {
-                            const user: Users = {
+                            const newWork: Works = {
                                    id,
-                                   name,
-                                   email,
-                                   password,
+                                   work,
+                                   user,
                             };
-                            const result = await modelUsers.update(user);
+                            const result = await modelWorks.update(newWork);
                             return response.status(200).json(result);
                      } catch (error) {
                             console.log(Errors.HandlingError(error));
@@ -90,18 +85,14 @@ export default class UsersController implements IContoller<Request, Response> {
               } else {
                      return response.status(400).json({
                             message: "Inputs incomplete, All input required",
-                            inputs: "id, name, email, password",
+                            inputs: "name, email, password",
                             status: 400,
                      });
               }
        }
 
-       /*
-              Delete Users
-       */
        async delete(request: Request, response: Response): Promise<Response> {
-              let id: number;
-
+              let id: number = 0;
               if (validator.isNumber(request.params.id)) {
                      id = parseInt(request.params.id);
               } else {
@@ -112,36 +103,32 @@ export default class UsersController implements IContoller<Request, Response> {
                      });
               }
               try {
-                     const result = await modelUsers.delete(id);
+                     const result = await modelWorks.delete(id);
                      return response.status(200).json(result);
               } catch (error) {
                      console.log(Errors.HandlingError(error));
-                     response.status(500).json(Errors.HandlingError(error));
-                     throw error;
-              }
-       }
-
-       /*
-              findAll Users 
-       */
-       async findAll(request: Request, response: Response): Promise<Response> {
-              try {
-                     const result: Users = await modelUsers.findAll();
-                     return response.status(200).json(result);
-              } catch (error) {
                      return response
                             .status(500)
                             .json(Errors.HandlingError(error));
               }
        }
 
-       /*
-              FindById Users
-       */
+       async findAll(request: Request, response: Response): Promise<Response> {
+              try {
+                     const result: Works = await modelWorks.findAll();
+                     return response.status(200).json(result);
+              } catch (error) {
+                     console.log(Errors.HandlingError(error));
+                     return response
+                            .status(500)
+                            .json(Errors.HandlingError(error));
+              }
+       }
+
        async findById(request: Request, response: Response): Promise<Response> {
               try {
                      const id: number = parseInt(request.params.id);
-                     const result: Users = await modelUsers.findById(id);
+                     const result: Works = await modelWorks.findById(id);
                      return response.status(200).json(result);
               } catch (error) {
                      console.log(Errors.HandlingError(error));
@@ -151,13 +138,13 @@ export default class UsersController implements IContoller<Request, Response> {
               }
        }
 
-       async findByName(
+       async findByUser(
               request: Request,
               response: Response
        ): Promise<Response> {
               try {
-                     const name: string = request.params.name;
-                     const result: Users = await modelUsers.findByName(name);
+                     const user: number = parseInt(request.params.user);
+                     const result: Works = await modelWorks.findByUser(user);
                      return response.status(200).json(result);
               } catch (error) {
                      console.log(Errors.HandlingError(error));

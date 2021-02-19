@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 class Bcrypt {
        constructor() {}
 
-       async encryptPassword(password) {
+       async encryptPassword(password: string) {
               try {
                      const salt = await bcrypt.genSalt(10);
                      const hash = await bcrypt.hash(password, salt);
@@ -13,7 +13,7 @@ class Bcrypt {
               }
        }
 
-       async matchPassword(password, savedPassword) {
+       async matchPassword(password: string, savedPassword: string) {
               try {
                      return await bcrypt.compare(password, savedPassword);
               } catch (error) {
