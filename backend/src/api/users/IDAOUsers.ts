@@ -7,4 +7,5 @@ export default interface IDAOUsers extends IDAO<Users, number> {
        */
 
        findByName(name: string): Promise<any>;
+       findByEmail(email: string): Promise<any>;
 }

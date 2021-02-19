@@ -7,7 +7,7 @@ export default class WorksModel implements IDAOWorks {
        private connectinMySQL: Pool;
 
        constructor() {
-              this.connectinMySQL = new ConnectinMySQL().getConnection();
+              this.connectinMySQL = ConnectinMySQL.getInstance().getConnection();
        }
 
        async insert(entity: Works): Promise<any> {

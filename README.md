@@ -85,7 +85,7 @@ _Y otras rutas mas adicinales_
 
 # Frontend Admin Crud
 
-![Image](https://github.com/BrunoBeltreGuzman/skills-test-ofimatic.com/blob/master/partials/screenshot/Captura%20de%20pantalla_2021-02-18_09-34-50.png)
+![Image](https://github.com/BrunoBeltreGuzman/skills-test-ofimatic.com/blob/master/partials/frontend/Captura%20de%20pantalla_2021-02-18_09-34-50.png)
 
 **Rputers ReactJS**
 

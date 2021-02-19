@@ -6,9 +6,18 @@ export default class ConnectinMySQL implements IConnection {
        private connection: Pool;
        private readonly database: string = propertiesMysql.database;
 
-       constructor() {
+       private static instance: ConnectinMySQL;
+
+       private constructor() {
               this.connect();
               this.connection = this.getConnection();
+       }
+
+       static getInstance(): ConnectinMySQL {
+              if (!ConnectinMySQL.instance) {
+                     ConnectinMySQL.instance = new ConnectinMySQL();
+              }
+              return ConnectinMySQL.instance;
        }
 
        private connect(): boolean {

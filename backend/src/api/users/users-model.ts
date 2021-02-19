@@ -7,7 +7,7 @@ export default class UsersModel implements IDAOUsers {
        private connectinMySQL: Pool;
 
        constructor() {
-              this.connectinMySQL = new ConnectinMySQL().getConnection();
+              this.connectinMySQL = ConnectinMySQL.getInstance().getConnection();
        }
 
        async insert(entity: Users): Promise<any> {
@@ -80,6 +80,14 @@ export default class UsersModel implements IDAOUsers {
               const users = await this.connectinMySQL.query({
                      sql: "SELECT * FROM users where name = ?",
                      values: [name],
+              });
+              return users[0];
+       }
+
+       async findByEmail(email: string): Promise<any> {
+              const users = await this.connectinMySQL.query({
+                     sql: "SELECT * FROM users where email = ?",
+                     values: [email],
               });
               return users[0];
        }

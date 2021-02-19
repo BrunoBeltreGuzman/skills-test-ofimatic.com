@@ -7,7 +7,7 @@ export default class InfoModel implements IDAOSkills {
        private connectinMySQL: Pool;
 
        constructor() {
-              this.connectinMySQL = new ConnectinMySQL().getConnection();
+              this.connectinMySQL = ConnectinMySQL.getInstance().getConnection();
        }
 
        async insert(entity: Info): Promise<any> {

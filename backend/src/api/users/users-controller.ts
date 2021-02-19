@@ -5,6 +5,7 @@ import Validator from "../../lib/validate/validator";
 import UsersModel from "./users-model";
 import IDAOUsers from "./IDAOUsers";
 import Errors from "../../exceptions/error/errors";
+import Bcrypt from "../../lib/bcrypt/bcrypt";
 
 const validator: Validator = new Validator();
 const modelUsers: IDAOUsers = new UsersModel();
@@ -25,6 +26,10 @@ export default class UsersController implements IContoller<Request, Response> {
                      validator.isValidate(password)
               ) {
                      try {
+                            //bcrypt password
+                            password = await Bcrypt.encryptPassword(
+                                   request.body.password
+                            );
                             const user: Users = {
                                    id: 0,
                                    name,

@@ -1,17 +1,21 @@
 import jwt, { DecodeOptions } from "jsonwebtoken";
-const config = require("../../config/auth.config.js");
+const config = require("../../config/jwt/key");
 import { Request, Response, NextFunction } from "express";
 
-class JsonWebToken {
+export default class JWT {
        constructor() {}
 
-       signJwt(user: any) {
+       static async signJwt(user: any) {
               const token = jwt.sign({ user }, config.secret);
               return token;
        }
 
-       verifyToken(request: any, response: any, next: NextFunction) {
-              const token = request.headers["authorization"];
+       static async verifyToken(
+              request: any,
+              response: any,
+              next: NextFunction
+       ) {
+              const token = await request.headers["authorization"];
               if (!token) {
                      return response.status(403).send({
                             message: "No token provided!",
@@ -33,5 +37,3 @@ class JsonWebToken {
               }
        }
 }
-
-module.exports = new JsonWebToken();

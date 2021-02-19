@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 export default class VerifyRole {
        constructor() {}
 
-       isUser(request: any, response: any, next: NextFunction) {
+       static isUser(request: any, response: any, next: NextFunction) {
               console.log("Role: " + request.user.role[0].role);
               if (request.user.role[0].role === "user") {
                      next();
@@ -16,7 +16,7 @@ export default class VerifyRole {
               }
        }
 
-       isAdmin(request: any, response: any, next: NextFunction) {
+       static isAdmin(request: any, response: any, next: NextFunction) {
               console.log("Role: " + request.user.role[0].role);
               if (request.user.role[0].role === "admin") {
                      next();
@@ -29,7 +29,7 @@ export default class VerifyRole {
               }
        }
 
-       isReader(request: any, response: any, next: NextFunction) {
+       static isReader(request: any, response: any, next: NextFunction) {
               console.log("Role: " + request.user.role[0].role);
               if (request.user.role[0].role === "reader") {
                      next();
@@ -42,7 +42,7 @@ export default class VerifyRole {
               }
        }
 
-       isRole(request: any, response: any, next: NextFunction) {
+       static isRole(request: any, response: any, next: NextFunction) {
               console.log("Role: " + request.user.role[0].role);
               if (request.user.role[0].role) {
                      next();
@@ -55,7 +55,7 @@ export default class VerifyRole {
               }
        }
 
-       isNotRole(request: any, response: any, next: NextFunction) {
+       static isNotRole(request: any, response: any, next: NextFunction) {
               console.log("Role: " + request.user.role[0].role);
               if (!request.user.role[0].role) {
                      next();
@@ -69,7 +69,7 @@ export default class VerifyRole {
               }
        }
 
-       allRoles(request: any, response: any, next: NextFunction) {
+       static allRoles(request: any, response: any, next: NextFunction) {
               console.log("Role: " + request.user.role[0].role);
               if (request.user.role[0].role) {
                      next();
@@ -82,7 +82,7 @@ export default class VerifyRole {
               }
        }
 
-       all(request: any, response: any, next: NextFunction) {
+       static all(request: any, response: any, next: NextFunction) {
               next();
        }
 }

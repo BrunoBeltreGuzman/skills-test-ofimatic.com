@@ -1,9 +1,9 @@
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 
-class Bcrypt {
+export default class Bcrypt {
        constructor() {}
 
-       async encryptPassword(password: string) {
+       static async encryptPassword(password: string) {
               try {
                      const salt = await bcrypt.genSalt(10);
                      const hash = await bcrypt.hash(password, salt);
@@ -13,7 +13,7 @@ class Bcrypt {
               }
        }
 
-       async matchPassword(password: string, savedPassword: string) {
+       static async matchPassword(password: string, savedPassword: string) {
               try {
                      return await bcrypt.compare(password, savedPassword);
               } catch (error) {
@@ -21,5 +21,3 @@ class Bcrypt {
               }
        }
 }
-
-module.exports = new Bcrypt();
