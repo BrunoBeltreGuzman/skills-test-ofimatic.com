@@ -4,10 +4,9 @@ import Users from "./users";
 import IDAOUsers from "./IDAOUsers";
 
 export default class UsersModel implements IDAOUsers {
-       private connectinMySQL: Pool;
-
+       private connectinMySQL: any;
        constructor() {
-              this.connectinMySQL = ConnectinMySQL.getInstance().getConnection();
+              this.connectinMySQL = ConnectinMySQL.getConnection2();
        }
 
        async insert(entity: Users): Promise<any> {
@@ -21,6 +20,7 @@ export default class UsersModel implements IDAOUsers {
                                    entity.password,
                             ],
                      });
+
                      return result[0];
               } catch (error) {
                      throw error;
@@ -39,6 +39,7 @@ export default class UsersModel implements IDAOUsers {
                                    entity.id,
                             ],
                      });
+
                      return result[0];
               } catch (error) {
                      throw error;
@@ -73,6 +74,7 @@ export default class UsersModel implements IDAOUsers {
                      sql: "SELECT * FROM users where id = ?",
                      values: [id],
               });
+
               return users[0];
        }
 
@@ -81,6 +83,7 @@ export default class UsersModel implements IDAOUsers {
                      sql: "SELECT * FROM users where name = ?",
                      values: [name],
               });
+
               return users[0];
        }
 
@@ -89,6 +92,7 @@ export default class UsersModel implements IDAOUsers {
                      sql: "SELECT * FROM users where email = ?",
                      values: [email],
               });
+
               return users[0];
        }
 }

@@ -4,17 +4,16 @@ import Roles from "./roles";
 import IDAORoles from "./IDAORoles";
 
 export default class RolesModel implements IDAORoles {
-       private connectinMySQL: Pool;
-
+       private connectinMySQL: any;
        constructor() {
-              this.connectinMySQL = ConnectinMySQL.getInstance().getConnection();
+              this.connectinMySQL = ConnectinMySQL.getConnection2();
        }
-
        async insert(entity: Roles): Promise<any> {
               const result = await this.connectinMySQL.query({
                      sql: "INSERT INTO roles (role) VALUES (?)",
                      values: [entity.role],
               });
+
               return result[0];
        }
 
@@ -26,6 +25,7 @@ export default class RolesModel implements IDAORoles {
                      sql: "UPDATE  roles SET role = ? WHERE id = ?",
                      values: [entity.role, entity.id],
               });
+
               return result[0];
        }
 
@@ -37,6 +37,7 @@ export default class RolesModel implements IDAORoles {
                      sql: "DELETE FROM roles WHERE id = ?",
                      values: [id],
               });
+
               return result[0];
        }
 
@@ -47,6 +48,7 @@ export default class RolesModel implements IDAORoles {
               const roles = await this.connectinMySQL.query({
                      sql: "SELECT * FROM roles",
               });
+
               return roles[0];
        }
 
@@ -58,6 +60,7 @@ export default class RolesModel implements IDAORoles {
                      sql: "SELECT * FROM roles WHERE id = ?",
                      values: [id],
               });
+
               return role[0];
        }
 
@@ -66,6 +69,7 @@ export default class RolesModel implements IDAORoles {
                      sql: "SELECT * FROM roles WHERE role = ?",
                      values: [role],
               });
+
               return roles[0];
        }
 }

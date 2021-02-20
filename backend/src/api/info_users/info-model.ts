@@ -4,10 +4,9 @@ import Info from "./info";
 import IDAOSkills from "./IDAOInfo";
 
 export default class InfoModel implements IDAOSkills {
-       private connectinMySQL: Pool;
-
+       private connectinMySQL: any;
        constructor() {
-              this.connectinMySQL = ConnectinMySQL.getInstance().getConnection();
+              this.connectinMySQL = ConnectinMySQL.getConnection2();
        }
 
        async insertByUser(user: number): Promise<any> {
@@ -16,6 +15,7 @@ export default class InfoModel implements IDAOSkills {
                             sql: "INSERT INTO info_users (user) values (?)",
                             values: [user],
                      });
+
                      return result[0];
               } catch (error) {
                      throw error;
@@ -39,6 +39,7 @@ export default class InfoModel implements IDAOSkills {
                                    entity.github,
                             ],
                      });
+
                      return result[0];
               } catch (error) {
                      throw error;
@@ -63,6 +64,7 @@ export default class InfoModel implements IDAOSkills {
                                    entity.id,
                             ],
                      });
+
                      return result[0];
               } catch (error) {
                      throw error;
@@ -75,6 +77,7 @@ export default class InfoModel implements IDAOSkills {
                             sql: "DELETE FROM info_users WHERE id = ?",
                             values: [id],
                      });
+
                      return result[0];
               } catch (error) {
                      throw error;
@@ -86,6 +89,7 @@ export default class InfoModel implements IDAOSkills {
                      const users = await this.connectinMySQL.query({
                             sql: "SELECT * FROM info_users",
                      });
+
                      return users[0];
               } catch (error) {
                      throw error;
@@ -97,6 +101,7 @@ export default class InfoModel implements IDAOSkills {
                      sql: "SELECT * FROM info_users where id = ?",
                      values: [id],
               });
+
               return users[0];
        }
 
@@ -105,6 +110,7 @@ export default class InfoModel implements IDAOSkills {
                      sql: "SELECT * FROM info_users where user = ?",
                      values: [user],
               });
+
               return users[0];
        }
 }

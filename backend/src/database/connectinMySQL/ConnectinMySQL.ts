@@ -3,14 +3,17 @@ import IConnection from "../IConnection";
 import propertiesMysql from "../../config/databese/properties-mysql";
 
 export default class ConnectinMySQL implements IConnection {
-       private connection: Pool;
+       private connection: any;
        private readonly database: string = propertiesMysql.database;
+
+       private static connection2: any;
 
        private static instance: ConnectinMySQL;
 
        private constructor() {
               this.connect();
               this.connection = this.getConnection();
+              ConnectinMySQL.connection2 = this.getConnection();
        }
 
        static getInstance(): ConnectinMySQL {
@@ -18,6 +21,13 @@ export default class ConnectinMySQL implements IConnection {
                      ConnectinMySQL.instance = new ConnectinMySQL();
               }
               return ConnectinMySQL.instance;
+       }
+
+       static getConnection2(): Pool {
+              if (!ConnectinMySQL.connection2) {
+                     ConnectinMySQL.instance = new ConnectinMySQL();
+              }
+              return ConnectinMySQL.connection2;
        }
 
        private connect(): boolean {
@@ -37,15 +47,14 @@ export default class ConnectinMySQL implements IConnection {
        }
        disConnect(): boolean {
               try {
-                     this.connection.end();
-                     console.log(
-                            "Data Base '" + this.database + "' Disconnected!"
-                     );
+                     this.connection.release();
+
                      return true;
               } catch (error) {
                      throw error;
               }
        }
+
        getConnection(): Pool {
               if (this.connection.getConnection()) {
                      return this.connection;

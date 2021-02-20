@@ -4,10 +4,9 @@ import Works from "./works";
 import IDAOWorks from "./IDAOWorks";
 
 export default class WorksModel implements IDAOWorks {
-       private connectinMySQL: Pool;
-
+       private connectinMySQL: any;
        constructor() {
-              this.connectinMySQL = ConnectinMySQL.getInstance().getConnection();
+              this.connectinMySQL = ConnectinMySQL.getConnection2();
        }
 
        async insert(entity: Works): Promise<any> {
@@ -16,6 +15,7 @@ export default class WorksModel implements IDAOWorks {
                             sql: "INSERT INTO works (work, user) values (?,?)",
                             values: [entity.work, entity.user],
                      });
+
                      return result[0];
               } catch (error) {
                      throw error;
@@ -29,6 +29,7 @@ export default class WorksModel implements IDAOWorks {
                                    "UPDATE works set work = ?, user = ? WHERE id = ?",
                             values: [entity.work, entity.user, entity.id],
                      });
+
                      return result[0];
               } catch (error) {
                      throw error;
@@ -41,6 +42,7 @@ export default class WorksModel implements IDAOWorks {
                             sql: "DELETE FROM works WHERE id = ?",
                             values: [id],
                      });
+
                      return result[0];
               } catch (error) {
                      throw error;
@@ -63,6 +65,7 @@ export default class WorksModel implements IDAOWorks {
                      sql: "SELECT * FROM works where id = ?",
                      values: [id],
               });
+
               return users[0];
        }
 
@@ -71,6 +74,7 @@ export default class WorksModel implements IDAOWorks {
                      sql: "SELECT * FROM works where user = ?",
                      values: [user],
               });
+
               return users[0];
        }
 }

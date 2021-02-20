@@ -4,10 +4,9 @@ import Skills from "./skills";
 import IDAOSkills from "./IDAOSkills";
 
 export default class SkillsModel implements IDAOSkills {
-       private connectinMySQL: Pool;
-
+       private connectinMySQL: any;
        constructor() {
-              this.connectinMySQL = ConnectinMySQL.getInstance().getConnection();
+              this.connectinMySQL = ConnectinMySQL.getConnection2();
        }
 
        async insert(entity: Skills): Promise<any> {
@@ -17,6 +16,7 @@ export default class SkillsModel implements IDAOSkills {
                                    "INSERT INTO skills (skill, user) values (?,?)",
                             values: [entity.skill, entity.user],
                      });
+
                      return result[0];
               } catch (error) {
                      throw error;
@@ -30,6 +30,7 @@ export default class SkillsModel implements IDAOSkills {
                                    "UPDATE skills set skill = ?, user = ? WHERE id = ?",
                             values: [entity.skill, entity.user, entity.id],
                      });
+
                      return result[0];
               } catch (error) {
                      throw error;
@@ -42,6 +43,7 @@ export default class SkillsModel implements IDAOSkills {
                             sql: "DELETE FROM skills WHERE id = ?",
                             values: [id],
                      });
+
                      return result[0];
               } catch (error) {
                      throw error;
@@ -53,6 +55,7 @@ export default class SkillsModel implements IDAOSkills {
                      const users = await this.connectinMySQL.query({
                             sql: "SELECT * FROM skills",
                      });
+
                      return users[0];
               } catch (error) {
                      throw error;
@@ -64,6 +67,7 @@ export default class SkillsModel implements IDAOSkills {
                      sql: "SELECT * FROM skills where id = ?",
                      values: [id],
               });
+
               return users[0];
        }
 
@@ -72,6 +76,7 @@ export default class SkillsModel implements IDAOSkills {
                      sql: "SELECT * FROM skills where user = ?",
                      values: [user],
               });
+
               return users[0];
        }
 }
