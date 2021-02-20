@@ -10,6 +10,18 @@ export default class InfoModel implements IDAOSkills {
               this.connectinMySQL = ConnectinMySQL.getInstance().getConnection();
        }
 
+       async insertByUser(user: number): Promise<any> {
+              try {
+                     const result = await this.connectinMySQL.query({
+                            sql: "INSERT INTO info_users (user) values (?)",
+                            values: [user],
+                     });
+                     return result[0];
+              } catch (error) {
+                     throw error;
+              }
+       }
+
        async insert(entity: Info): Promise<any> {
               try {
                      const result = await this.connectinMySQL.query({

@@ -27,3 +27,9 @@ insert into
        users (name, email, password)
 values
        ("sa3", "sa3@gmail.com", "123");
+
+-- Join --
+insert into
+       users (name, email, password)
+values
+       ("user", "user@gmail.com", "123");
