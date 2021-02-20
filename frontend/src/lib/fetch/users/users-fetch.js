@@ -1,6 +1,6 @@
-import usersRouters from "../../config/routers/users-routers";
+//import usersRouters from "../../config/routers/users-routers";
 
-export default class FectUsers {
+class UsersFectch {
        constructor() {}
 
        async findAll() {
@@ -19,3 +19,5 @@ export default class FectUsers {
 
        findByName(name) {}
 }
+
+export default new UsersFectch();

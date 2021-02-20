@@ -12,6 +12,7 @@ import SignUp from "../pages/SignUp";
 import Home from "../pages/Home";
 import Admin from "../pages/Admin";
 import Profile from "../pages/Profile";
+import Profile2 from "../pages/Profile2";
 
 import NotFound from "../pages/NotFound";
 
@@ -45,11 +46,16 @@ export default function router() {
                                           <Admin></Admin>
                                    </Route>
 
+                                   {/* Admin */}
+                                   <Route exact path="/profile2">
+                                          <Profile2></Profile2>
+                                   </Route>
+
                                    {/* Profile */}
                                    <Route
+                                          path="/profile/:user"
+                                          component={Profile}
                                           exact
-                                          path="/profile/:profile"
-                                          children={<Profile />}
                                    />
 
                                    <Route component={NotFound} />
@@ -59,3 +65,13 @@ export default function router() {
        );
 }
 //<Route component={NotFound} />
+
+/*
+
+                        <Route
+                                          exact
+                                          path="/profile/:profile"
+                                          component={Profile}
+                                   />
+
+*/

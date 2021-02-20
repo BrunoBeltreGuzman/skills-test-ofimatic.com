@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-import NavAdmin from "../components/NavAdmin";
-import UsersAdmin from "../components/Users/UsersAdmin";
-import FectUsers from "../lib/users/FectUsers";
-import Index from "./Index";
+import NavAdmin from "../components/Nav/NavAdmin";
+import UserAdmin from "../components/Users/UserAdmin";
+import profileFectch from "../lib/fetch/profile/profile-fetch";
 
-function useFectUsers() {
-       const fectUsers = new FectUsers();
+function useFectchUsers() {
        const [loading, setLoading] = useState([null]);
        const [error, setError] = useState([]);
        const [data, setData] = useState([]);
        useEffect(async function () {
               try {
                      setLoading(true);
-                     const data = await fectUsers.findAll();
+                     const data = await profileFectch.findAll();
                      setData(data);
                      setLoading(false);
               } catch (error) {
@@ -24,7 +22,7 @@ function useFectUsers() {
 }
 
 export default function Admin() {
-       const { data, loading, error } = useFectUsers();
+       const { data, loading, error } = useFectchUsers();
 
        if (loading) {
               return (
@@ -44,18 +42,18 @@ export default function Admin() {
                                    <div className="container">
                                           <div className="row">
                                                  {data.map(function (
-                                                        user,
+                                                        profile,
                                                         index
                                                  ) {
                                                         return (
-                                                               <UsersAdmin
+                                                               <UserAdmin
                                                                       key={
                                                                              index
                                                                       }
-                                                                      user={
-                                                                             user
+                                                                      profile={
+                                                                             profile
                                                                       }
-                                                               ></UsersAdmin>
+                                                               ></UserAdmin>
                                                         );
                                                  })}
                                           </div>
@@ -67,24 +65,23 @@ export default function Admin() {
 
        if (error) {
               return (
-                     <div className="container">
-                            <h1 className="alert-danger">
-                                   Error: {error.message}
-                            </h1>
+                     <div
+                            class="alert alert-danger alert-dismissible fade show"
+                            role="alert"
+                     >
+                            <p>
+                                   <strong>Error: </strong>
+                                   {error.message}
+                            </p>
+                            <button
+                                   type="button"
+                                   class="close"
+                                   data-dismiss="alert"
+                                   aria-label="Close"
+                            >
+                                   <span aria-hidden="true">&times;</span>
+                            </button>
                      </div>
               );
        }
-
-       return (
-              <div>
-                     <NavAdmin></NavAdmin>
-                     <br />
-                     <br />
-                     <div className="container">
-                            <div className="row">
-                                   <UsersAdmin></UsersAdmin>
-                            </div>
-                     </div>
-              </div>
-       );
 }

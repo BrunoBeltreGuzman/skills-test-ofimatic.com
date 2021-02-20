@@ -1,0 +1,17 @@
+
+1.Prepare Project:
+       1. add scripts :
+              "scripts": {
+                     "start": "node dist/index.js",
+                     "postinstall": "tsc",
+                     "watch-node": "nodemon dist/index.js",
+                     "watch-ts": "tsc -w",
+                     "deploy": "git add . && git commit -m Heroku && git push heroku master"
+              },
+
+       2. add in package.json: 
+              "engines": { "node": "12.16.3" },
+
+       3. new file in the project root called:
+              file: Procfile
+              content: web: node dist/index.js

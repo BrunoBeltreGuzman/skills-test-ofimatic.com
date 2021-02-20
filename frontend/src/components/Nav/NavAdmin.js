@@ -62,18 +62,21 @@ export default function NavAdmin() {
                                                         <li className="nav-item">
                                                                <a
                                                                       className="nav-link"
-                                                                      href="/profile"
-                                                               >
-                                                                      Profile
-                                                               </a>
-                                                        </li>
-                                                        <li className="nav-item">
-                                                               <a
-                                                                      className="nav-link"
                                                                       href="/logout"
                                                                >
                                                                       Logout
                                                                </a>
+                                                        </li>
+                                                        <li className="nav-item">
+                                                               <div className="">
+                                                                      <a href="">
+                                                                             <img
+                                                                                    src="./img/avatar.png"
+                                                                                    alt="Avatar"
+                                                                                    className="avatar-nav"
+                                                                             />
+                                                                      </a>
+                                                               </div>
                                                         </li>
                                                  </ul>
                                           </div>

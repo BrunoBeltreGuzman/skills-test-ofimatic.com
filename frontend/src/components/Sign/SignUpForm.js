@@ -1,4 +1,51 @@
 import React from "react";
+import localSign from "../../lib/localSign/LocalSign";
+import signFetch from "../../lib/fetch/sign/sing-fetch";
+import ReactDOM from "react-dom";
+
+async function singUp(event) {
+       event.preventDefault();
+       try {
+              event.preventDefault();
+              const name = event.target.name.value;
+              const email = event.target.email.value;
+              const password = event.target.password.value;
+              console.log(name, email, password);
+
+              const data = await signFetch.signup(name, email, password);
+              console.log(data);
+
+              if (data.insertId) {
+                     resetForm(1500);
+                     message("SingUp successfully");
+                     await resetForm(1500);
+                     window.location.href = "/signin";
+              } else {
+                     message(data.message);
+              }
+       } catch (error) {
+              console.log(error);
+              message(
+                     "Opp!, There was an error registering the user, ",
+                     error.message
+              );
+       }
+}
+
+function message2(text) {
+       const result = document.getElementById("result");
+       ReactDOM.render(<p>{text}</p>, result);
+}
+
+function message(text) {
+       alert(text);
+}
+
+async function resetForm(time) {
+       setTimeout(() => {
+              document.getElementById("signInForm").reset();
+       }, time);
+}
 
 export default function SignUpForm() {
        return (
@@ -27,11 +74,17 @@ export default function SignUpForm() {
                                                                              Account
                                                                       </p>
                                                                       <br />
-                                                                      <form>
+                                                                      <form
+                                                                             onSubmit={
+                                                                                    singUp
+                                                                             }
+                                                                             id="signUpForm"
+                                                                      >
                                                                              <div className="form-group">
                                                                                     <input
                                                                                            type="type"
                                                                                            name="name"
+                                                                                           id="name"
                                                                                            placeholder="Name"
                                                                                            className="form-control"
                                                                                            required="text"
@@ -42,6 +95,7 @@ export default function SignUpForm() {
                                                                                     <input
                                                                                            type="email"
                                                                                            name="username"
+                                                                                           id="email"
                                                                                            placeholder="Email"
                                                                                            className="form-control"
                                                                                            required="email"
@@ -51,6 +105,7 @@ export default function SignUpForm() {
                                                                                     <input
                                                                                            type="password"
                                                                                            name="password"
+                                                                                           id="password"
                                                                                            placeholder="Password"
                                                                                            className="form-control"
                                                                                            required="text"
