@@ -3,17 +3,16 @@ import IConnection from "../IConnection";
 import propertiesMysql from "../../config/databese/properties-mysql";
 
 export default class ConnectinMySQL implements IConnection {
-       private connection: any;
        private readonly database: string = propertiesMysql.database;
 
-       private static connection2: any;
-
+       private connection: any;
+       private static connectionStatic: any;
        private static instance: ConnectinMySQL;
 
        private constructor() {
               this.connect();
               this.connection = this.getConnection();
-              ConnectinMySQL.connection2 = this.getConnection();
+              ConnectinMySQL.connectionStatic = this.getConnection();
        }
 
        static getInstance(): ConnectinMySQL {
@@ -23,11 +22,12 @@ export default class ConnectinMySQL implements IConnection {
               return ConnectinMySQL.instance;
        }
 
-       static getConnection2(): Pool {
-              if (!ConnectinMySQL.connection2) {
+       static getConnectionMySQL(): Pool {
+              if (!ConnectinMySQL.connectionStatic) {
+                     //create connection
                      ConnectinMySQL.instance = new ConnectinMySQL();
               }
-              return ConnectinMySQL.connection2;
+              return ConnectinMySQL.connectionStatic;
        }
 
        private connect(): boolean {

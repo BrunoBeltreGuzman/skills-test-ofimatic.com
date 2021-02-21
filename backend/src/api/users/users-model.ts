@@ -5,8 +5,17 @@ import IDAOUsers from "./IDAOUsers";
 
 export default class UsersModel implements IDAOUsers {
        private connectinMySQL: any;
-       constructor() {
-              this.connectinMySQL = ConnectinMySQL.getConnection2();
+       private constructor() {
+              this.connectinMySQL = ConnectinMySQL.getConnectionMySQL();
+       }
+
+       private static instance: UsersModel;
+
+       static getInstance() {
+              if (!UsersModel.instance) {
+                     UsersModel.instance = new UsersModel();
+              }
+              return UsersModel.instance;
        }
 
        async insert(entity: Users): Promise<any> {
@@ -40,6 +49,31 @@ export default class UsersModel implements IDAOUsers {
                             ],
                      });
 
+                     return result[0];
+              } catch (error) {
+                     throw error;
+              }
+       }
+
+       async updateData(entity: Users): Promise<any> {
+              try {
+                     const result = await this.connectinMySQL.query({
+                            sql:
+                                   "UPDATE users set name = ?, email = ? WHERE id = ?",
+                            values: [entity.name, entity.email, entity.id],
+                     });
+
+                     return result[0];
+              } catch (error) {
+                     throw error;
+              }
+       }
+       async changePassword(user: number, newPassword: string): Promise<any> {
+              try {
+                     const result = await this.connectinMySQL.query({
+                            sql: "UPDATE users set password = ? WHERE id = ?",
+                            values: [newPassword, user],
+                     });
                      return result[0];
               } catch (error) {
                      throw error;

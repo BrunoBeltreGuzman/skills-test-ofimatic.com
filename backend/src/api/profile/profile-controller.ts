@@ -5,11 +5,20 @@ import Errors from "../../exceptions/error/errors";
 import Bcrypt from "../../lib/bcrypt/bcrypt";
 import ProfileModel from "./profile-model";
 
-const profileModel: ProfileModel = new ProfileModel();
-const validator: Validator = new Validator();
+const profileModel: ProfileModel = ProfileModel.getInstance();
+const validator: Validator = Validator.getInstance();
 
 export default class ProfileController {
-       constructor() {}
+       private constructor() {}
+
+       private static instance: ProfileController;
+
+       static getInstance() {
+              if (!ProfileController.instance) {
+                     ProfileController.instance = new ProfileController();
+              }
+              return ProfileController.instance;
+       }
 
        async findAll(request: Request, response: Response): Promise<Response> {
               try {

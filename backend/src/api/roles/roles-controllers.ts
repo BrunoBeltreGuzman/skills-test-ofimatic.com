@@ -5,11 +5,20 @@ import Validator from "../../lib/validate/validator";
 import RolesModel from "./roles-model";
 import Errors from "../../exceptions/error/errors";
 
-const validator: Validator = new Validator();
-const rolesModel: RolesModel = new RolesModel();
+const validator: Validator = Validator.getInstance();
+const rolesModel: RolesModel = RolesModel.getInstance();
 
 export default class ControllerRoles implements IContoller<Request, Response> {
-       constructor() {}
+       private constructor() {}
+
+       private static instance: ControllerRoles;
+
+       static getInstance() {
+              if (!ControllerRoles.instance) {
+                     ControllerRoles.instance = new ControllerRoles();
+              }
+              return ControllerRoles.instance;
+       }
 
        /*
               Insert Role

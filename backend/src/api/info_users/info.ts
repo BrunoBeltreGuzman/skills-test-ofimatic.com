@@ -3,6 +3,7 @@ export default interface Info {
        user: number;
        description: string;
        work: string;
+       skill: string;
        pais: string;
        telefono: string;
        blog: string;

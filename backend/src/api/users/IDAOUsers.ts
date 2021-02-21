@@ -8,4 +8,7 @@ export default interface IDAOUsers extends IDAO<Users, number> {
 
        findByName(name: string): Promise<any>;
        findByEmail(email: string): Promise<any>;
+
+       updateData(user: Users): Promise<any>;
+       changePassword(user: number, newPassword: string): Promise<any>;
 }

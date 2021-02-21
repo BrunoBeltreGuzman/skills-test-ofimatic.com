@@ -12,7 +12,10 @@ export default function NavUsers() {
                      <div>
                             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                                    <div className="container">
-                                          <a className="navbar-brand" href="/">
+                                          <a
+                                                 className="navbar-brand"
+                                                 href="/home"
+                                          >
                                                  <i className="fas fa-users"></i>{" "}
                                                  Socials
                                           </a>
@@ -39,7 +42,8 @@ export default function NavUsers() {
                                                                              logOut
                                                                       }
                                                                >
-                                                                      Logout
+                                                                      Logout{" "}
+                                                                      <i class="fas fa-sign-out-alt"></i>
                                                                </button>
                                                         </li>
                                                         <li className="nav-item">
@@ -50,19 +54,20 @@ export default function NavUsers() {
                                                                              localSign.getUserId()
                                                                       }
                                                                >
-                                                                      Profile
+                                                                      Profile{" "}
+                                                                      <i class="far fa-id-badge"></i>
                                                                </a>
                                                         </li>
+                                                        &nbsp; &nbsp; &nbsp;
                                                         <li className="nav-item">
                                                                <div className="">
                                                                       <a
                                                                              href={
-                                                                                    "/profile/" +
-                                                                                    localSign.getUserId()
+                                                                                    "/confiprofile"
                                                                              }
                                                                       >
                                                                              <img
-                                                                                    src="./img/avatar.png"
+                                                                                    src="img/avatar.png"
                                                                                     alt="Avatar"
                                                                                     className="avatar-nav"
                                                                              />

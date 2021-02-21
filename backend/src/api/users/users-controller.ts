@@ -7,11 +7,20 @@ import IDAOUsers from "./IDAOUsers";
 import Errors from "../../exceptions/error/errors";
 import Bcrypt from "../../lib/bcrypt/bcrypt";
 
-const validator: Validator = new Validator();
-const modelUsers: IDAOUsers = new UsersModel();
+const validator: Validator = Validator.getInstance();
+const modelUsers: IDAOUsers = UsersModel.getInstance();
 
 export default class UsersController implements IContoller<Request, Response> {
-       constructor() {}
+       private constructor() {}
+
+       private static instance: UsersController;
+
+       static getInstance() {
+              if (!UsersController.instance) {
+                     UsersController.instance = new UsersController();
+              }
+              return UsersController.instance;
+       }
 
        /*
               insert Users
@@ -78,6 +87,11 @@ export default class UsersController implements IContoller<Request, Response> {
                      validator.isValidate(password)
               ) {
                      try {
+                            //bcrypt password
+                            password = await Bcrypt.encryptPassword(
+                                   request.body.password
+                            );
+
                             const user: Users = {
                                    id,
                                    name,
@@ -96,6 +110,108 @@ export default class UsersController implements IContoller<Request, Response> {
                      return response.status(400).json({
                             message: "Inputs incomplete, All input required",
                             inputs: "id, name, email, password",
+                            status: 400,
+                     });
+              }
+       }
+
+       async updateData(
+              request: Request,
+              response: Response
+       ): Promise<Response> {
+              let id: number;
+              const name: string = request.body.name;
+              const email: string = request.body.email;
+              const password: string = "";
+
+              if (validator.isNumber(request.params.user)) {
+                     id = parseInt(request.params.user);
+              } else {
+                     return response.status(400).json({
+                            message: "Inputs incomplete, All input required",
+                            inputs: "user, name, email",
+                            status: 400,
+                     });
+              }
+              if (validator.isValidate(name) && validator.isValidate(email)) {
+                     try {
+                            const newUser: Users = {
+                                   id,
+                                   name,
+                                   email,
+                                   password,
+                            };
+                            const result = await modelUsers.updateData(newUser);
+                            return response.status(200).json(result);
+                     } catch (error) {
+                            console.log(Errors.HandlingError(error));
+                            response
+                                   .status(500)
+                                   .json(Errors.HandlingError(error));
+                            throw error;
+                     }
+              } else {
+                     return response.status(400).json({
+                            message: "Inputs incomplete, All input required",
+                            inputs: "user, name, email",
+                            status: 400,
+                     });
+              }
+       }
+
+       async changePassword(
+              request: Request,
+              response: Response
+       ): Promise<Response> {
+              let user: number;
+              let password: string = request.body.password;
+              let newPassword: string = request.body.newPassword;
+
+              if (validator.isNumber(request.params.user)) {
+                     user = parseInt(request.params.user);
+              } else {
+                     return response.status(400).json({
+                            message: "Inputs incomplete, All input required",
+                            inputs: "user, password, newPassword",
+                            status: 400,
+                     });
+              }
+              if (
+                     validator.isValidate(password) &&
+                     validator.isValidate(newPassword)
+              ) {
+                     try {
+                            const result = await modelUsers.findById(user);
+                            const validPassword = await Bcrypt.matchPassword(
+                                   password,
+                                   result[0].password
+                            );
+                            if (validPassword) {
+                                   //bcrypt password
+                                   newPassword = await Bcrypt.encryptPassword(
+                                          newPassword
+                                   );
+                                   const results = await modelUsers.changePassword(
+                                          user,
+                                          newPassword
+                                   );
+                                   return response.status(200).json(results);
+                            } else {
+                                   return response.status(400).json({
+                                          message: "Incorrect Password",
+                                   });
+                            }
+                     } catch (error) {
+                            console.log(Errors.HandlingError(error));
+                            response
+                                   .status(500)
+                                   .json(Errors.HandlingError(error));
+                            throw error;
+                     }
+              } else {
+                     return response.status(400).json({
+                            message: "Inputs incomplete, All input required",
+                            inputs: "user, name, email",
                             status: 400,
                      });
               }

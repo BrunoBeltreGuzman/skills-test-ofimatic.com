@@ -1,0 +1,766 @@
+{
+	"info": {
+		"_postman_id": "6563d1fc-720a-4b36-8d2a-e3ef7fe9cc13",
+		"name": "Offimatic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "http://localhost:2000/users/2",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXIiOnsiaWQiOjgsIm5hbWUiOiJzYSIsImVtYWlsIjoic2EiLCJwYXNzd29yZCI6IiQyYSQxMCRMZUFISmVrSzdLWGlSMzl5RjB5dnhlZ3B1ZDBwTFVwUlA0L2FNck05U3hlQmpxZU5FcENyVyIsInJvbGUiOjMsImNyZWF0ZWRBdCI6IjIwMjEtMDEtMjRUMjE6NTA6MDIuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMDEtMjRUMjE6NTA6MDIuMDAwWiJ9LCJyb2xlIjpbeyJpZCI6Mywicm9sZSI6IkFkbWluIiwiY3JlYXRlZEF0IjoiMjAyMS0wMS0yNFQxNzoyODowNS4wMDBaIiwidXBkYXRlZEF0IjoiMjAyMS0wMS0yNFQxNzoyODowNS4wMDBaIn1dfSwiaWF0IjoxNjExNTI1Mjk4fQ.K1pMR14vtYG8QMGUnjV_xajR2XM27V_ffuOibJaMlfc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"sa1\",\n    \"email\": \"sa1\",\n    \"password\": \"1231\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/users/9",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXIiOnsiaWQiOjgsIm5hbWUiOiJzYSIsImVtYWlsIjoic2EiLCJwYXNzd29yZCI6IiQyYSQxMCRMZUFISmVrSzdLWGlSMzl5RjB5dnhlZ3B1ZDBwTFVwUlA0L2FNck05U3hlQmpxZU5FcENyVyIsInJvbGUiOjMsImNyZWF0ZWRBdCI6IjIwMjEtMDEtMjRUMjE6NTA6MDIuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMDEtMjRUMjE6NTA6MDIuMDAwWiJ9LCJyb2xlIjpbeyJpZCI6Mywicm9sZSI6IkFkbWluIiwiY3JlYXRlZEF0IjoiMjAyMS0wMS0yNFQxNzoyODowNS4wMDBaIiwidXBkYXRlZEF0IjoiMjAyMS0wMS0yNFQxNzoyODowNS4wMDBaIn1dfSwiaWF0IjoxNjExNTI1Mjk4fQ.K1pMR14vtYG8QMGUnjV_xajR2XM27V_ffuOibJaMlfc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"213321\",\n    \"email\": \"sa2\",\n    \"password\": \"2\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/users/22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"users",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXIiOnsiaWQiOjgsIm5hbWUiOiJzYSIsImVtYWlsIjoic2EiLCJwYXNzd29yZCI6IiQyYSQxMCRMZUFISmVrSzdLWGlSMzl5RjB5dnhlZ3B1ZDBwTFVwUlA0L2FNck05U3hlQmpxZU5FcENyVyIsInJvbGUiOjMsImNyZWF0ZWRBdCI6IjIwMjEtMDEtMjRUMjE6NTA6MDIuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMDEtMjRUMjE6NTA6MDIuMDAwWiJ9LCJyb2xlIjpbeyJpZCI6Mywicm9sZSI6IkFkbWluIiwiY3JlYXRlZEF0IjoiMjAyMS0wMS0yNFQxNzoyODowNS4wMDBaIiwidXBkYXRlZEF0IjoiMjAyMS0wMS0yNFQxNzoyODowNS4wMDBaIn1dfSwiaWF0IjoxNjExNTI1Mjk4fQ.K1pMR14vtYG8QMGUnjV_xajR2XM27V_ffuOibJaMlfc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"admin\",\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/users/9",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXIiOnsiaWQiOjgsIm5hbWUiOiJzYSIsImVtYWlsIjoic2EiLCJwYXNzd29yZCI6IiQyYSQxMCRMZUFISmVrSzdLWGlSMzl5RjB5dnhlZ3B1ZDBwTFVwUlA0L2FNck05U3hlQmpxZU5FcENyVyIsInJvbGUiOjMsImNyZWF0ZWRBdCI6IjIwMjEtMDEtMjRUMjE6NTA6MDIuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMDEtMjRUMjE6NTA6MDIuMDAwWiJ9LCJyb2xlIjpbeyJpZCI6Mywicm9sZSI6IkFkbWluIiwiY3JlYXRlZEF0IjoiMjAyMS0wMS0yNFQxNzoyODowNS4wMDBaIiwidXBkYXRlZEF0IjoiMjAyMS0wMS0yNFQxNzoyODowNS4wMDBaIn1dfSwiaWF0IjoxNjExNTI1Mjk4fQ.K1pMR14vtYG8QMGUnjV_xajR2XM27V_ffuOibJaMlfc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:2000/users/22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"users",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXIiOnsiaWQiOjgsIm5hbWUiOiJzYSIsImVtYWlsIjoic2EiLCJwYXNzd29yZCI6IiQyYSQxMCRMZUFISmVrSzdLWGlSMzl5RjB5dnhlZ3B1ZDBwTFVwUlA0L2FNck05U3hlQmpxZU5FcENyVyIsInJvbGUiOjMsImNyZWF0ZWRBdCI6IjIwMjEtMDEtMjRUMjE6NTA6MDIuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMDEtMjRUMjE6NTA6MDIuMDAwWiJ9LCJyb2xlIjpbeyJpZCI6Mywicm9sZSI6IkFkbWluIiwiY3JlYXRlZEF0IjoiMjAyMS0wMS0yNFQxNzoyODowNS4wMDBaIiwidXBkYXRlZEF0IjoiMjAyMS0wMS0yNFQxNzoyODowNS4wMDBaIn1dfSwiaWF0IjoxNjExNTI1Mjk4fQ.K1pMR14vtYG8QMGUnjV_xajR2XM27V_ffuOibJaMlfc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:2000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "skills",
+			"item": [
+				{
+					"name": "http://localhost:2000/skills/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2000/skills/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"skills",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/skills/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2000/skills/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"skills",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/skills/user/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2000/skills/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"skills",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/skills/1",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skill\": \"java\",\n    \"user\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/skills/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"skills",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/skills/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skill\": \"Web\",\n    \"user\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/skills/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"skills",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/skills/1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skill\": \"java\",\n    \"user\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/skills/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"skills",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/skills/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2000/skills/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"skills",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "works",
+			"item": [
+				{
+					"name": "http://localhost:2000/works/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2000/works/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"works",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/works/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2000/skills/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"skills",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/works/user/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2000/works/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"works",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/works/1",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skill\": \"java\",\n    \"user\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/works/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"works",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/works/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"work\": \"Web2\",\n    \"user\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/works/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"works",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/works/1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"work\": \"java\",\n    \"user\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/works/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"works",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "info_users",
+			"item": [
+				{
+					"name": "http://localhost:2000//info-users/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2000/info-users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"info-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/info-users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2000/info-users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"info-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/info-users/user/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2000/info-users/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"info-users",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/info-users/1",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skill\": \"java\",\n    \"user\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/info-users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"info-users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/info-users/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": 12\n    \"descripcion\": \"skill\",\n    \"work\": \"Lorem ipsum\",\n    \"skill\": \"ss\",\n    \"pais\": \"República Dominicana\",\n    \"telefono\": \"8096546544\",\n    \"blog\": \"http://localhost:3000/confiprofile\",\n    \"facebook\": \"http://localhost:3000/confiprofile\",\n    \"linkedin\": \"http://localhost:3000/confiprofile\",\n    \"github\": \"http://localhost:3000/confiprofile\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/info-users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"info-users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/info-users/1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": 10,\n    \"description\": \"2020\",\n    \"work\": \"test\",\n    \"pais\": \"\",\n    \"telefono\": \"\",\n    \"blog\": \"\",\n    \"facebook\": \"\",\n    \"linkedin\": \"\",\n    \"github\": \"\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/info-users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"info-users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "sign",
+			"item": [
+				{
+					"name": "http://localhost:2000/sign/signin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"bobo@gmail.com\",\n    \"password\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/sign/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"sign",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:2000/sign/signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"bobo\",\n    \"email\": \"bobo@gmail.com\",\n    \"password\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:2000/sign/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"sign",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile",
+			"item": [
+				{
+					"name": "http://localhost:2000/profile/name/bobo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2000/profile/name/bobo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2000",
+							"path": [
+								"profile",
+								"name",
+								"bobo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

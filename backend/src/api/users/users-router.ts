@@ -2,11 +2,15 @@ const { Router } = require("express");
 const router = Router();
 
 import UsersController from "./users-controller";
-const controllerUsers: UsersController = new UsersController();
+const controllerUsers: UsersController = UsersController.getInstance();
 
 router.post("/", controllerUsers.insert);
 
 router.put("/:id", controllerUsers.update);
+
+router.put("/updatedata/:user", controllerUsers.updateData);
+
+router.put("/changepassword/:user", controllerUsers.changePassword);
 
 router.delete("/:id", controllerUsers.delete);
 

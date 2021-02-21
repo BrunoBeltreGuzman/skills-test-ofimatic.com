@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import NavAdmin from "../components/Nav/NavAdmin";
 import UserAdmin from "../components/Users/UserAdmin";
 import profileFectch from "../lib/fetch/profile/profile-fetch";
+import localSign from "../lib/localSign/LocalSign";
+import Loading from "../components/Partials/Loading";
+import Error from "../components/Partials/Error";
 
 function useFectchUsers() {
        const [loading, setLoading] = useState([null]);
@@ -18,18 +21,17 @@ function useFectchUsers() {
                      setLoading(false);
               }
        }, []);
-       return { data, loading, error };
+       return { data, loading, error, setData };
 }
 
 export default function Admin() {
-       const { data, loading, error } = useFectchUsers();
+       if (!localSign.getToken()) {
+              window.location.href = "/signin";
+       }
+       const { data, loading, error, setData } = useFectchUsers();
 
        if (loading) {
-              return (
-                     <div className="container">
-                            <h1>Loading....</h1>
-                     </div>
-              );
+              return <Loading></Loading>;
        }
 
        if (data) {
@@ -50,6 +52,9 @@ export default function Admin() {
                                                                       key={
                                                                              index
                                                                       }
+                                                                      setData={
+                                                                             setData
+                                                                      }
                                                                       profile={
                                                                              profile
                                                                       }
@@ -64,24 +69,6 @@ export default function Admin() {
        }
 
        if (error) {
-              return (
-                     <div
-                            class="alert alert-danger alert-dismissible fade show"
-                            role="alert"
-                     >
-                            <p>
-                                   <strong>Error: </strong>
-                                   {error.message}
-                            </p>
-                            <button
-                                   type="button"
-                                   class="close"
-                                   data-dismiss="alert"
-                                   aria-label="Close"
-                            >
-                                   <span aria-hidden="true">&times;</span>
-                            </button>
-                     </div>
-              );
+              return <Error error={error}></Error>;
        }
 }

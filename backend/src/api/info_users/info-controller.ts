@@ -6,17 +6,27 @@ import InfoModel from "./info-model";
 import IDAOInfo from "./IDAOInfo";
 import Errors from "../../exceptions/error/errors";
 
-const validator: Validator = new Validator();
-const modelInfo: IDAOInfo = new InfoModel();
+const validator: Validator = Validator.getInstance();
+const modelInfo: IDAOInfo = InfoModel.getInstance();
 
-export default class SkillsController implements IContoller<Request, Response> {
-       constructor() {}
+export default class InfoController implements IContoller<Request, Response> {
+       private constructor() {}
+
+       private static instance: InfoController;
+
+       static getInstance() {
+              if (!InfoController.instance) {
+                     InfoController.instance = new InfoController();
+              }
+              return InfoController.instance;
+       }
 
        async insert(request: Request, response: Response): Promise<Response> {
               let id: number = 0;
               let user: number = 0;
               const description: string = request.body.description;
               const work: string = request.body.work;
+              const skill: string = request.body.skill;
               const pais: string = request.body.pais;
               const telefono: string = request.body.telefono;
               const blog: string = request.body.blog;
@@ -41,6 +51,7 @@ export default class SkillsController implements IContoller<Request, Response> {
                             user,
                             description,
                             work,
+                            skill,
                             pais,
                             telefono,
                             blog,
@@ -62,7 +73,8 @@ export default class SkillsController implements IContoller<Request, Response> {
               let id: number = 0;
               let user: number = 0;
               const description: string = request.body.description;
-              const work: string = request.body.work;
+              const work: string = request.body.trabajo;
+              const skill: string = request.body.skill;
               const pais: string = request.body.pais;
               const telefono: string = request.body.telefono;
               const blog: string = request.body.blog;
@@ -90,6 +102,7 @@ export default class SkillsController implements IContoller<Request, Response> {
                             user,
                             description,
                             work,
+                            skill,
                             pais,
                             telefono,
                             blog,

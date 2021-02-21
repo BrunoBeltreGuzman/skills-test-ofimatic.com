@@ -2,7 +2,7 @@ const { Router } = require("express");
 const router = Router();
 
 import InfoController from "./info-controller";
-const controllerInfo: InfoController = new InfoController();
+const controllerInfo: InfoController = InfoController.getInstance();
 
 router.post("/", controllerInfo.insert);
 

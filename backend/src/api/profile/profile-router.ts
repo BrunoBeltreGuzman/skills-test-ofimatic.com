@@ -2,7 +2,7 @@ const { Router } = require("express");
 const router = Router();
 
 import ProfileController from "./profile-controller";
-const profileController: ProfileController = new ProfileController();
+const profileController: ProfileController = ProfileController.getInstance();
 
 router.get("/", profileController.findAll);
 

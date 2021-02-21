@@ -1,0 +1,35 @@
+.mycard {
+}
+
+.textProfile {
+       font-size: 22px;
+}
+
+.feedback {
+       font-size: 22px;
+}
+
+.socials {
+       font-size: 30px;
+}
+
+.subra {
+       text-decoration: underline rgb(30, 30, 30);
+}
+
+.intro {
+       height: 100vh;
+       color: #fff;
+       background-image: url("./../img/wallpaperflare.com_wallpaper (1).jpg");
+       background-color: rgb(20, 20, 20);
+       overflow: hidden;
+       overflow: auto;
+}
+
+.myProfile {
+       height: 100vh;
+       color: #fff;
+       background-image: url("./../img/wallpaperflare.com_wallpaper (1).jpg");
+       overflow: hidden;
+       overflow: auto;
+}

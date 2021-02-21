@@ -14,7 +14,7 @@ class LocalSign {
               return localStorage.getItem("userId");
        }
 
-       getToken() {
+       getUserName() {
               return localStorage.getItem("userName");
        }
 
@@ -22,7 +22,7 @@ class LocalSign {
               return localStorage.getItem("token");
        }
 
-       getToken() {
+       getRole() {
               return localStorage.getItem("role");
        }
 }

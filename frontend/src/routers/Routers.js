@@ -12,8 +12,8 @@ import SignUp from "../pages/SignUp";
 import Home from "../pages/Home";
 import Admin from "../pages/Admin";
 import Profile from "../pages/Profile";
-import Profile2 from "../pages/Profile2";
-
+import ConfiProfile from "../pages/ConfiProfile";
+import Password from "../pages/Password";
 import NotFound from "../pages/NotFound";
 
 export default function router() {
@@ -46,9 +46,14 @@ export default function router() {
                                           <Admin></Admin>
                                    </Route>
 
-                                   {/* Admin */}
-                                   <Route exact path="/profile2">
-                                          <Profile2></Profile2>
+                                   {/* ConfiProfile */}
+                                   <Route exact path="/confiprofile">
+                                          <ConfiProfile></ConfiProfile>
+                                   </Route>
+
+                                   {/* Change PassWord */}
+                                   <Route exact path="/password">
+                                          <Password></Password>
                                    </Route>
 
                                    {/* Profile */}

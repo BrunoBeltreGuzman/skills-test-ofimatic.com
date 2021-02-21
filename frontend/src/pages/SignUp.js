@@ -5,7 +5,12 @@ import localSign from "../lib/localSign/LocalSign";
 
 export default function SignUp() {
        if (localSign.getToken()) {
-              window.location.href = "/home";
+              if (localSign.getRole() == "admin") {
+              } else {
+                     if (localSign.getRole() != "admin") {
+                            window.location.href = "/home";
+                     }
+              }
        }
 
        return (

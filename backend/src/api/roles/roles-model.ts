@@ -5,9 +5,19 @@ import IDAORoles from "./IDAORoles";
 
 export default class RolesModel implements IDAORoles {
        private connectinMySQL: any;
-       constructor() {
-              this.connectinMySQL = ConnectinMySQL.getConnection2();
+       private constructor() {
+              this.connectinMySQL = ConnectinMySQL.getConnectionMySQL();
        }
+
+       private static instance: RolesModel;
+
+       static getInstance() {
+              if (!RolesModel.instance) {
+                     RolesModel.instance = new RolesModel();
+              }
+              return RolesModel.instance;
+       }
+
        async insert(entity: Roles): Promise<any> {
               const result = await this.connectinMySQL.query({
                      sql: "INSERT INTO roles (role) VALUES (?)",

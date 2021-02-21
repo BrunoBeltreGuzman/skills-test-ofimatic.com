@@ -1,5 +1,15 @@
 import React from "react";
-import { format, render, cancel, register } from "timeago.js";
+import { format } from "timeago.js";
+import temUser from "../../lib/localSign/TemUser";
+
+async function updateUser(userId, userName, role) {
+       temUser.saveTemUser(userId, userName, role);
+       if (temUser.temGetUserId()) {
+              window.location.href = "/confiprofile";
+       } else {
+              alert("error");
+       }
+}
 
 export default function UserAdmin(props) {
        if (!props.profile) {
@@ -34,20 +44,44 @@ export default function UserAdmin(props) {
                                                         <i className="fas fa-user-cog"></i>{" "}
                                                         Profile
                                                  </a>
-                                                 <a
+                                                 <button
                                                         className="dropdown-item"
-                                                        href="#"
+                                                        onClick={async function () {
+                                                               await updateUser(
+                                                                      props
+                                                                             .profile
+                                                                             .user,
+                                                                      props
+                                                                             .profile
+                                                                             .name,
+                                                                      props
+                                                                             .profile
+                                                                             .role
+                                                               );
+                                                        }}
                                                  >
                                                         <i className="fas fa-user-edit"></i>{" "}
                                                         Update
-                                                 </a>
-                                                 <a
+                                                 </button>
+                                                 <button
                                                         className="dropdown-item"
-                                                        href="#"
+                                                        onClick={async function () {
+                                                               await updateUser(
+                                                                      props
+                                                                             .profile
+                                                                             .user,
+                                                                      props
+                                                                             .profile
+                                                                             .name,
+                                                                      props
+                                                                             .profile
+                                                                             .role
+                                                               );
+                                                        }}
                                                  >
                                                         <i className="fas fa-user-times"></i>{" "}
                                                         Delete
-                                                 </a>
+                                                 </button>
                                           </div>
                                    </div>
                                    <br />
@@ -67,6 +101,7 @@ export default function UserAdmin(props) {
                                           <p className="card-text">
                                                  {props.profile.email}
                                           </p>
+
                                           {props.profile.blog ? (
                                                  <a
                                                         href={
@@ -91,41 +126,78 @@ export default function UserAdmin(props) {
                                           </p>
                                           <hr />
                                           <div className="text-center">
-                                                 {props.profile.facebook ? (
+                                                 {props.profile.facebook !=
+                                                        "" &&
+                                                 props.profile.facebook !=
+                                                        null &&
+                                                 props.profile.facebook !=
+                                                        "null" ? (
                                                         <a
-                                                               className="btn btn-sm btn-dark m-2"
+                                                               target="_blank"
+                                                               href={
+                                                                      props
+                                                                             .profile
+                                                                             .facebook
+                                                               }
+                                                               className="btn btn-sm  btn-dark m-2"
                                                                data-bs-toggle="tooltip"
                                                                data-bs-placement="bottom"
                                                                title="facebook"
                                                         >
-                                                               {" "}
-                                                               <i className="fab fa-facebook"></i>{" "}
-                                                        </button>
+                                                               <div className="">
+                                                                      <i className="m fab fa-facebook"></i>
+                                                               </div>
+                                                        </a>
                                                  ) : (
                                                         <div></div>
                                                  )}
-                                                 {props.profile.linkedin ? (
-                                                        <button
+
+                                                 {props.profile.linkedin !=
+                                                        "" &&
+                                                 props.profile.linkedin !=
+                                                        null &&
+                                                 props.profile.linkedin !=
+                                                        "null" ? (
+                                                        <a
+                                                               target="_blank"
+                                                               href={
+                                                                      props
+                                                                             .profile
+                                                                             .linkedin
+                                                               }
                                                                className="btn btn-sm  btn-dark m-2"
                                                                data-bs-toggle="tooltip"
                                                                data-bs-placement="bottom"
                                                                title="linkedin"
                                                         >
-                                                               <i className="fab fa-linkedin"></i>
-                                                        </button>
+                                                               <div className="">
+                                                                      <i className="m fab fa-linkedin"></i>
+                                                               </div>
+                                                        </a>
                                                  ) : (
-                                                        <span></span>
+                                                        <div></div>
                                                  )}
 
-                                                 {props.profile.github ? (
-                                                        <button
+                                                 {props.profile.github != "" &&
+                                                 props.profile.github != null &&
+                                                 props.profile.github !=
+                                                        "null" ? (
+                                                        <a
+                                                               target="_blank"
+                                                               href={
+                                                                      props
+                                                                             .profile
+                                                                             .github
+                                                               }
                                                                className="btn btn-sm  btn-dark m-2"
                                                                data-bs-toggle="tooltip"
                                                                data-bs-placement="bottom"
-                                                               title="github"
+                                                               title="linkedin"
                                                         >
-                                                               <i className="fab fa-github-square"></i>
-                                                        </button>
+                                                               <div className="">
+                                                                      <i className="fab fa-github-square"></i>
+                                                               </div>
+                                                        </a>
                                                  ) : (
                                                         <div></div>
                                                  )}

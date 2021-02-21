@@ -2,7 +2,7 @@ const { Router } = require("express");
 const router = Router();
 
 import ControllerRoles from "./roles-controllers";
-const controllerRole: ControllerRoles = new ControllerRoles();
+const controllerRole: ControllerRoles = ControllerRoles.getInstance();
 
 import JWT from "../../lib/jwt/jwt";
 import VerifyRole from "../../lib/jwt/verifyRole";
@@ -21,7 +21,7 @@ router.delete(
        controllerRole.delete
 );
 
-router.get("/", [JWT.verifyToken, VerifyRole.isAdmin], controllerRole.findAll);
+router.get("/", [], controllerRole.findAll);
 
 router.get(
        "/:id",

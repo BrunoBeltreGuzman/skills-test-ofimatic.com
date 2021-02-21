@@ -1,5 +1,14 @@
 export default class Validator {
-       constructor() {}
+       private constructor() {}
+
+       private static instance: Validator;
+
+       static getInstance() {
+              if (!Validator.instance) {
+                     Validator.instance = new Validator();
+              }
+              return Validator.instance;
+       }
 
        isValidate(value: string): boolean {
               try {

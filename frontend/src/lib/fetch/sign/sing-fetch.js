@@ -1,4 +1,5 @@
 import signRouters from "../sign/sign-routers";
+import infoFetch from "../info_users/info-fetch";
 
 class SignFetch {
        async signin(email, password) {
@@ -33,6 +34,7 @@ class SignFetch {
               });
               const data = await response.json();
               console.log(data);
+              await infoFetch.insert(data.insertId);
               return data;
        }
 }

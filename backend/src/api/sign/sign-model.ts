@@ -3,8 +3,17 @@ import UsersModel from "../users/users-model";
 
 export default class ModelSign {
        private users: UsersModel;
-       constructor() {
-              this.users = new UsersModel();
+       private constructor() {
+              this.users = UsersModel.getInstance();
+       }
+
+       private static instance: ModelSign;
+
+       static getInstance() {
+              if (!ModelSign.instance) {
+                     ModelSign.instance = new ModelSign();
+              }
+              return ModelSign.instance;
        }
 
        /*

@@ -5,8 +5,18 @@ import IDAOSkills from "./IDAOInfo";
 
 export default class InfoModel implements IDAOSkills {
        private connectinMySQL: any;
-       constructor() {
-              this.connectinMySQL = ConnectinMySQL.getConnection2();
+
+       private constructor() {
+              this.connectinMySQL = ConnectinMySQL.getConnectionMySQL();
+       }
+
+       private static instance: InfoModel;
+
+       static getInstance() {
+              if (!InfoModel.instance) {
+                     InfoModel.instance = new InfoModel();
+              }
+              return InfoModel.instance;
        }
 
        async insertByUser(user: number): Promise<any> {
@@ -26,11 +36,12 @@ export default class InfoModel implements IDAOSkills {
               try {
                      const result = await this.connectinMySQL.query({
                             sql:
-                                   "INSERT INTO info_users (user, descripcion, work, pais, telefono, blog, facebook, linkedin, github) values (?,?,?,?,?,?,?,?,?)",
+                                   "INSERT INTO info_users (user, descripcion, work, skill, pais, telefono, blog, facebook, linkedin, github) values (?,?,?,?,?,?,?,?,?,?)",
                             values: [
                                    entity.user,
                                    entity.description,
                                    entity.work,
+                                   entity.skill,
                                    entity.pais,
                                    entity.telefono,
                                    entity.blog,
@@ -50,11 +61,12 @@ export default class InfoModel implements IDAOSkills {
               try {
                      const result = await this.connectinMySQL.query({
                             sql:
-                                   "UPDATE info_users set user = ?, descripcion = ?, work = ?, pais = ?, telefono = ?, blog = ?, facebook = ?, linkedin = ?, github = ? WHERE id = ? ",
+                                   "UPDATE info_users set user = ?, descripcion = ?, work = ?, skill = ?,pais = ?, telefono = ?, blog = ?, facebook = ?, linkedin = ?, github = ? WHERE id = ? ",
                             values: [
                                    entity.user,
                                    entity.description,
                                    entity.work,
+                                   entity.skill,
                                    entity.pais,
                                    entity.telefono,
                                    entity.blog,
@@ -74,7 +86,7 @@ export default class InfoModel implements IDAOSkills {
        async delete(id: number): Promise<any> {
               try {
                      const result = await this.connectinMySQL.query({
-                            sql: "DELETE FROM info_users WHERE id = ?",
+                            sql: "DELETE FROM info_users WHERE user = ?",
                             values: [id],
                      });
 

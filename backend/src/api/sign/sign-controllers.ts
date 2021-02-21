@@ -5,15 +5,24 @@ import SignModel from "./sign-model";
 import RolesModel from "../roles/roles-model";
 import Errors from "../../exceptions/error/errors";
 
-const validator: Validator = new Validator();
-const signModel: SignModel = new SignModel();
-const rolesModel: RolesModel = new RolesModel();
+const validator: Validator = Validator.getInstance();
+const signModel: SignModel = SignModel.getInstance();
+const rolesModel: RolesModel = RolesModel.getInstance();
 
 import Bcrypt from "../../lib/bcrypt/bcrypt";
 import JWT from "../../lib/jwt/jwt";
 
 export default class ControllerSing {
-       constructor() {}
+       private constructor() {}
+
+       private static instance: ControllerSing;
+
+       static getInstance() {
+              if (!ControllerSing.instance) {
+                     ControllerSing.instance = new ControllerSing();
+              }
+              return ControllerSing.instance;
+       }
 
        /*
               Signin

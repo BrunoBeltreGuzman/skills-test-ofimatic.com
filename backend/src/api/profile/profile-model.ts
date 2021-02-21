@@ -3,9 +3,19 @@ import { Pool } from "mysql2/promise";
 
 export default class ProfileModel {
        private connectinMySQL: any;
-       constructor() {
-              this.connectinMySQL = ConnectinMySQL.getConnection2();
+       private constructor() {
+              this.connectinMySQL = ConnectinMySQL.getConnectionMySQL();
        }
+
+       private static instance: ProfileModel;
+
+       static getInstance() {
+              if (!ProfileModel.instance) {
+                     ProfileModel.instance = new ProfileModel();
+              }
+              return ProfileModel.instance;
+       }
+
        async findAll(): Promise<any> {
               try {
                      const users = await this.connectinMySQL.query({

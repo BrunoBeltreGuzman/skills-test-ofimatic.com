@@ -1,10 +1,8 @@
 import React from "react";
 import localSign from "../../lib/localSign/LocalSign";
 import signFetch from "../../lib/fetch/sign/sing-fetch";
-import ReactDOM from "react-dom";
 
 async function singUp(event) {
-       event.preventDefault();
        try {
               event.preventDefault();
               const name = event.target.name.value;
@@ -17,28 +15,25 @@ async function singUp(event) {
 
               if (data.insertId) {
                      resetForm(1500);
-                     message("SingUp successfully");
+                     alert("SingUp successfully");
                      await resetForm(1500);
-                     window.location.href = "/signin";
+                     if (localSign.getRole() == "admin") {
+                            window.location.href = "/admin";
+                     } else {
+                            if (localSign.getRole() != "admin") {
+                                   window.location.href = "/signin";
+                            }
+                     }
               } else {
-                     message(data.message);
+                     alert(data.message);
               }
        } catch (error) {
               console.log(error);
-              message(
-                     "Opp!, There was an error registering the user, ",
-                     error.message
+              alert(
+                     "Opp!, There was an error registering the user, " +
+                            error.message
               );
        }
-}
-
-function message2(text) {
-       const result = document.getElementById("result");
-       ReactDOM.render(<p>{text}</p>, result);
-}
-
-function message(text) {
-       alert(text);
 }
 
 async function resetForm(time) {
@@ -58,7 +53,7 @@ export default function SignUpForm() {
                                                         <div className="row">
                                                                <div className="col-md-7">
                                                                       <img
-                                                                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN4blPCs3ETLPQGOXYfqrZGf1LNZw8-R23lw&usqp=CAU"
+                                                                             src="https://picsum.photos/1080/1080"
                                                                              className="imaSignUp"
                                                                       />
                                                                </div>

@@ -7,7 +7,6 @@ export default function Index() {
        if (localSign.getToken()) {
               window.location.href = "/home";
        }
-
        return (
               <div>
                      <Nav></Nav>

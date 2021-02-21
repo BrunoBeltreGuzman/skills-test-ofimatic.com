@@ -1,17 +1,15 @@
 import React from "react";
 import signFetch from "../../lib/fetch/sign/sing-fetch";
-import ReactDOM from "react-dom";
 import localSign from "../../lib/localSign/LocalSign";
 
 async function singIn(event) {
-       event.preventDefault();
        try {
               event.preventDefault();
               const email = event.target.email.value;
               const password = event.target.password.value;
               const data = await signFetch.signin(email, password);
               if (data.token) {
-                     message("SingIn successfully");
+                     alert("SingIn successfully");
                      await resetForm(1500);
                      localSign.saveCredencials(
                             data.user.id,
@@ -21,24 +19,15 @@ async function singIn(event) {
                      );
                      window.location.href = "/home";
               } else {
-                     message(data.message);
+                     alert(data.message);
               }
        } catch (error) {
               console.log(error);
-              message(
-                     "Opp!, There was an error registering the user, ",
-                     error.message
+              alert(
+                     "Opp!, There was an error registering the user, " +
+                            error.message
               );
        }
-}
-
-function message(text) {
-       alert(text);
-}
-
-function message2(text) {
-       const result = document.getElementById("result");
-       ReactDOM.render(<p>{text}</p>, result);
 }
 
 async function resetForm(time) {
@@ -47,7 +36,7 @@ async function resetForm(time) {
        }, time);
 }
 
-export default function SignInBody() {
+export default function SignInForm() {
        return (
               <div>
                      <div className="container p-4">
@@ -75,6 +64,9 @@ export default function SignInBody() {
                                                                              placeholder="Email "
                                                                              className="form-control"
                                                                              required="text"
+                                                                             defaultValue={
+                                                                                    "admin@gmail.com"
+                                                                             }
                                                                              autoFocus
                                                                       />
                                                                </div>
@@ -86,6 +78,9 @@ export default function SignInBody() {
                                                                              id="password"
                                                                              placeholder="Password"
                                                                              className="form-control"
+                                                                             defaultValue={
+                                                                                    "admin"
+                                                                             }
                                                                              required="text"
                                                                       />
                                                                </div>

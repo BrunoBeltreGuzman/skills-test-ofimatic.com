@@ -118,13 +118,22 @@ _Y otras rutas mas adicinales_
                      <Admin></Admin>
               </Route>
 
+              {/* ConfiProfile */}
+              <Route exact path="/confiprofile">
+                     <ConfiProfile></ConfiProfile>
+              </Route>
+
+              {/* Change PassWord */}
+              <Route exact path="/password">
+                     <Password></Password>
+              </Route>
+
               {/* Profile */}
               <Route
+                     path="/profile/:user"
+                     component={Profile}
                      exact
-                     path="/profile/:profile"
-                     children={<Profile />}
               />
-              {/* NotFound */}
               <Route component={NotFound} />
        </Switch>
 </Router>

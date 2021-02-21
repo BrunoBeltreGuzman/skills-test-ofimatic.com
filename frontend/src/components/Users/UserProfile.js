@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import profileFectch from "../../lib/fetch/profile/profile-fetch";
-import AllSkills from "../skills/AllSkills";
-import AllWorks from "../Works/AllWorks";
+
+import Loading from "../Partials/Loading";
+import Error from "../Partials/Error";
 
 function useFectchProfile(id) {
        const [loading, setLoading] = useState([null]);
@@ -34,16 +35,16 @@ export default function UserProfile(props) {
               fontSize: "22px",
        };
 
+       const subra = {
+              textDecoration: "underline rgb(30, 30, 30)",
+       };
+
        const socials = {
               fontSize: "30px",
        };
 
        if (loading) {
-              return (
-                     <div className="container">
-                            <h1>Loading....</h1>
-                     </div>
-              );
+              return <Loading></Loading>;
        }
 
        if (data) {
@@ -72,7 +73,9 @@ export default function UserProfile(props) {
                                                                       }
                                                                </strong>
                                                         </h3>
-                                                        {data.work != "" ? (
+                                                        {data.work != "" &&
+                                                        data.work != null &&
+                                                        data.work != "null" ? (
                                                                <h6 className="text-secondary">
                                                                       <strong>
                                                                              <i className="fas fa-briefcase"></i>{" "}
@@ -82,10 +85,12 @@ export default function UserProfile(props) {
                                                                       </strong>
                                                                </h6>
                                                         ) : (
-                                                               <div></div>
+                                                               <span></span>
                                                         )}
 
-                                                        {data.pais != "" ? (
+                                                        {data.pais != "" &&
+                                                        data.pais != null &&
+                                                        data.pais != "null" ? (
                                                                <h6 className="text-secondary">
                                                                       <i className="fas fa-map-marker-alt"></i>{" "}
                                                                       {
@@ -93,10 +98,12 @@ export default function UserProfile(props) {
                                                                       }
                                                                </h6>
                                                         ) : (
-                                                               <div></div>
+                                                               <span></span>
                                                         )}
 
-                                                        {data.blog != "" ? (
+                                                        {data.blog != "" &&
+                                                        data.blog != null &&
+                                                        data.blog != "null" ? (
                                                                <a
                                                                       target="_blank"
                                                                       href={
@@ -109,7 +116,7 @@ export default function UserProfile(props) {
                                                                       <i className="fas fa-external-link-alt"></i>
                                                                </a>
                                                         ) : (
-                                                               <div></div>
+                                                               <span></span>
                                                         )}
                                                  </div>
                                                  <div className="col-md-3">
@@ -158,7 +165,9 @@ export default function UserProfile(props) {
                             </div>
                             <div>
                                    <br />
-                                   {data.descripcion != "" ? (
+                                   {data.descripcion != "" &&
+                                   data.descripcion != null &&
+                                   data.descripcion != "null" ? (
                                           <p
                                                  className="text-left"
                                                  style={textProfile}
@@ -166,26 +175,64 @@ export default function UserProfile(props) {
                                                  {data.descripcion}
                                           </p>
                                    ) : (
-                                          <div></div>
+                                          <span></span>
                                    )}
 
                                    <div className="row">
                                           <div className="col-md-6">
-                                                 {data.user ? (
-                                                        <AllWorks
-                                                               user={data.user}
-                                                        ></AllWorks>
+                                                 {data.work != "" &&
+                                                 data.work != null &&
+                                                 data.work != "null" ? (
+                                                        <div>
+                                                               <h6
+                                                                      style={
+                                                                             subra
+                                                                      }
+                                                               >
+                                                                      <strong>
+                                                                             Work
+                                                                      </strong>
+                                                               </h6>
+
+                                                               <h6 className="">
+                                                                      <strong>
+                                                                             <i className="fas fa-briefcase"></i>{" "}
+                                                                             {
+                                                                                    data.work
+                                                                             }
+                                                                      </strong>
+                                                               </h6>
+                                                        </div>
                                                  ) : (
-                                                        <div></div>
+                                                        <span></span>
                                                  )}
                                           </div>
                                           <div className="col-md-6">
-                                                 {data.user ? (
-                                                        <AllSkills
-                                                               user={data.user}
-                                                        ></AllSkills>
+                                                 {data.skill != "" &&
+                                                 data.skill != null &&
+                                                 data.skill != "null" ? (
+                                                        <div>
+                                                               <h6
+                                                                      style={
+                                                                             subra
+                                                                      }
+                                                               >
+                                                                      <strong>
+                                                                             Skill
+                                                                      </strong>
+                                                               </h6>
+
+                                                               <h6 className="">
+                                                                      <strong>
+                                                                             <i className="fas fa-dot-circle"></i>{" "}
+                                                                             {
+                                                                                    data.skill
+                                                                             }
+                                                                      </strong>
+                                                               </h6>
+                                                        </div>
                                                  ) : (
-                                                        <div></div>
+                                                        <span></span>
                                                  )}
                                           </div>
                                    </div>
@@ -245,17 +292,21 @@ export default function UserProfile(props) {
                                                  <span></span>
                                           )}
                                           <br /> <br />
-                                          {data.email != "" ? (
+                                          {data.email != "" &&
+                                          data.email != null &&
+                                          data.email != "null" ? (
                                                  <h6>
                                                         <strong>
-                                                               bruno@gmail.com
+                                                               {data.email}
                                                         </strong>
                                                  </h6>
                                           ) : (
                                                  <span></span>
                                           )}
-                                          {data.telefono != "" ? (
-                                                 <h6>809-564-6541</h6>
+                                          {data.telefono != "" &&
+                                          data.telefono != null &&
+                                          (data.telefono != "null") != "" ? (
+                                                 <h6>{data.telefono}</h6>
                                           ) : (
                                                  <div></div>
                                           )}
@@ -272,12 +323,6 @@ export default function UserProfile(props) {
               );
        }
        if (error) {
-              return (
-                     <div className="container">
-                            <h1 className="alert-danger">
-                                   Error: {error.message}
-                            </h1>
-                     </div>
-              );
+              return <Error error={error}></Error>;
        }
 }

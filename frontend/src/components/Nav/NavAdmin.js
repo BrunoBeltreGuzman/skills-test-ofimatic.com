@@ -1,4 +1,12 @@
 import React from "react";
+import localSign from "../../lib/localSign/LocalSign";
+import temUser from "../../lib/localSign/TemUser";
+
+function logOut() {
+       localSign.deleteCredencials();
+       temUser.temDeleteCredencials();
+       window.location.href = "/";
+}
 
 export default function NavAdmin() {
        return (
@@ -6,9 +14,12 @@ export default function NavAdmin() {
                      <div>
                             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                                    <div className="container">
-                                          <a className="navbar-brand" href="/">
+                                          <a
+                                                 className="navbar-brand"
+                                                 href="/admin"
+                                          >
                                                  <i className="fas fa-users"></i>{" "}
-                                                 Admin CRUD
+                                                 Admin
                                           </a>
                                           <button
                                                  className="navbar-toggler"
@@ -44,39 +55,33 @@ export default function NavAdmin() {
                                                                >
                                                                       <a
                                                                              className="dropdown-item"
-                                                                             href="/links"
+                                                                             href="/signup"
                                                                       >
+                                                                             <i class="fas fa-user-plus"></i>{" "}
                                                                              Add
                                                                              User
                                                                       </a>
                                                                       <div className="dropdown-divider"></div>
                                                                       <a
                                                                              className="dropdown-item"
-                                                                             href="/links/add"
+                                                                             href="/admin"
                                                                       >
+                                                                             <i class="fas fa-users-cog"></i>{" "}
                                                                              List
                                                                              Users
                                                                       </a>
                                                                </div>
                                                         </li>
                                                         <li className="nav-item">
-                                                               <a
-                                                                      className="nav-link"
-                                                                      href="/logout"
+                                                               <button
+                                                                      className="btn btn-link nav-link"
+                                                                      onClick={
+                                                                             logOut
+                                                                      }
                                                                >
-                                                                      Logout
-                                                               </a>
-                                                        </li>
-                                                        <li className="nav-item">
-                                                               <div className="">
-                                                                      <a href="">
-                                                                             <img
-                                                                                    src="./img/avatar.png"
-                                                                                    alt="Avatar"
-                                                                                    className="avatar-nav"
-                                                                             />
-                                                                      </a>
-                                                               </div>
+                                                                      Logout{" "}
+                                                                      <i class="fas fa-sign-out-alt"></i>
+                                                               </button>
                                                         </li>
                                                  </ul>
                                           </div>
