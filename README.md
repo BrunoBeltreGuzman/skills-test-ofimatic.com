@@ -4,13 +4,13 @@
 
 ```console
 api/
-       users/
-                     users - interface, para difinir el tipo users
-                     IDAOUsers - interface, extiende de la interface IDAO, hereda todo los metodos genericos
-                                          de una determinada entidad
-                     users-model - class, implementa la interface IDAOUsers
-                     users-controller - class, intermediario entre el cliente y el modelo
-                     users-routers - module, se definen todas las rutas http
+    users/
+       users - interface, para difinir el tipo users
+       IDAOUsers - interface, extiende de la interface IDAO, hereda todo los metodos genericos
+                   de una determinada entidad
+       users-model - class, implementa la interface IDAOUsers
+       users-controller - class, intermediario entre el cliente y el modelo
+       users-routers - module, se definen todas las rutas http
 ```
 
 _Esta es la estructura de todas las respectivas apis_
