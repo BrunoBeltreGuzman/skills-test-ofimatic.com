@@ -21,7 +21,7 @@ router.delete(
        controllerRole.delete
 );
 
-router.get("/", [], controllerRole.findAll);
+router.get("/", [JWT.verifyToken, VerifyRole.isAdmin], controllerRole.findAll);
 
 router.get(
        "/:id",

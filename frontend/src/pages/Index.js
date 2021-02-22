@@ -15,10 +15,6 @@ export default function Index() {
                      <br />
                      <br />
                      <IndexBody></IndexBody>
-                     <br />
-                     <br />
-                     <br />
-                     <br />
               </div>
        );
 }

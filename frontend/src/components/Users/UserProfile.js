@@ -136,21 +136,13 @@ export default function UserProfile(props) {
                                                                              className="dropdown-menu"
                                                                              aria-labelledby="dropdownMenuButton"
                                                                       >
-                                                                             <a
-                                                                                    target="_blank"
-                                                                                    className="dropdown-item"
-                                                                                    href="#"
-                                                                             >
+                                                                             <a className="dropdown-item">
                                                                                     <span className="feedback">
                                                                                            &#128077;
                                                                                     </span>
                                                                                     Like
                                                                              </a>
-                                                                             <a
-                                                                                    target="_blank"
-                                                                                    className="dropdown-item"
-                                                                                    href="#"
-                                                                             >
+                                                                             <a className="dropdown-item">
                                                                                     <span className="feedback">
                                                                                            &#128078;
                                                                                     </span>

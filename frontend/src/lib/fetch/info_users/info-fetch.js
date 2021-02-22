@@ -1,5 +1,7 @@
 import infoRouters from "./info-routers";
 import usersFetch from "../users/users-fetch";
+import localSign from "../../localSign/LocalSign";
+
 class InfoUsers {
        constructor() {}
 
@@ -8,6 +10,7 @@ class InfoUsers {
                      method: "GET",
                      headers: {
                             "Content-type": "application/json; charset=UTF-8",
+                            authorization: localSign.getToken(),
                      },
               });
               const data = await response.json();
@@ -20,6 +23,7 @@ class InfoUsers {
                      method: "DELETE",
                      headers: {
                             "Content-type": "application/json; charset=UTF-8",
+                            authorization: localSign.getToken(),
                      },
               });
               const data = await response.json();
@@ -32,6 +36,7 @@ class InfoUsers {
                      method: "GET",
                      headers: {
                             "Content-type": "application/json; charset=UTF-8",
+                            authorization: localSign.getToken(),
                      },
               });
               const data = await response.json();
@@ -47,6 +52,7 @@ class InfoUsers {
                      method: "POST",
                      headers: {
                             "Content-type": "application/json; charset=UTF-8",
+                            authorization: localSign.getToken(),
                      },
                      body: JSON.stringify(body),
               });
@@ -72,6 +78,7 @@ class InfoUsers {
                                    headers: {
                                           "Content-type":
                                                  "application/json; charset=UTF-8",
+                                          authorization: localSign.getToken(),
                                    },
                                    body: JSON.stringify(data),
                             }
@@ -84,6 +91,7 @@ class InfoUsers {
                             headers: {
                                    "Content-type":
                                           "application/json; charset=UTF-8",
+                                   authorization: localSign.getToken(),
                             },
                             body: JSON.stringify(data),
                      });

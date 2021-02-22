@@ -12,6 +12,6 @@
        2. add in package.json: 
               "engines": { "node": "12.16.3" },
 
-       3. new file in the project root called:
+       3. new file in the project root called:.
               file: Procfile
               content: web: node dist/index.js

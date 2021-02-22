@@ -4,20 +4,55 @@ const router = Router();
 import UsersController from "./users-controller";
 const controllerUsers: UsersController = UsersController.getInstance();
 
-router.post("/", controllerUsers.insert);
+import JWT from "../../lib/jwt/jwt";
+import VerifyRole from "../../lib/jwt/verifyRole";
 
-router.put("/:id", controllerUsers.update);
+router.post(
+       "/",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerUsers.insert
+);
 
-router.put("/updatedata/:user", controllerUsers.updateData);
+router.put(
+       "/:id",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerUsers.update
+);
 
-router.put("/changepassword/:user", controllerUsers.changePassword);
+router.put(
+       "/updatedata/:user",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerUsers.updateData
+);
 
-router.delete("/:id", controllerUsers.delete);
+router.put(
+       "/changepassword/:user",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerUsers.changePassword
+);
 
-router.get("/", controllerUsers.findAll);
+router.delete(
+       "/:id",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerUsers.delete
+);
 
-router.get("/:id", controllerUsers.findById);
+router.get(
+       "/",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerUsers.findAll
+);
 
-router.get("/name/:name", controllerUsers.findByName);
+router.get(
+       "/:id",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerUsers.findById
+);
+
+router.get(
+       "/name/:name",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerUsers.findByName
+);
 
 export default router;

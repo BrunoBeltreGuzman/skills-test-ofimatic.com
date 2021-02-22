@@ -2,4 +2,4 @@
 Services:
 https://console.clever-cloud.com/
 
-create database (mysql)
+create database (mysql).

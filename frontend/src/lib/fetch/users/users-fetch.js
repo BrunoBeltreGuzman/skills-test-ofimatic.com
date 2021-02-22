@@ -1,4 +1,5 @@
 import usersRouters from "./users-routers";
+import localSign from "../../localSign/LocalSign";
 
 class UsersFectch {
        constructor() {}
@@ -8,6 +9,7 @@ class UsersFectch {
                      method: "GET",
                      headers: {
                             "Content-type": "application/json; charset=UTF-8",
+                            authorization: localSign.getToken(),
                      },
               });
               const data = await response.json();
@@ -20,6 +22,7 @@ class UsersFectch {
                      method: "DELETE",
                      headers: {
                             "Content-type": "application/json; charset=UTF-8",
+                            authorization: localSign.getToken(),
                      },
               });
               const data = await response.json();
@@ -36,6 +39,7 @@ class UsersFectch {
                      method: "PUT",
                      headers: {
                             "Content-type": "application/json; charset=UTF-8",
+                            authorization: localSign.getToken(),
                      },
                      body: JSON.stringify(body),
               });
@@ -53,6 +57,7 @@ class UsersFectch {
                      method: "PUT",
                      headers: {
                             "Content-type": "application/json; charset=UTF-8",
+                            authorization: localSign.getToken(),
                      },
                      body: JSON.stringify(body),
               });

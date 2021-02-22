@@ -29,7 +29,7 @@ export default function Nav() {
                                                         <li className="nav-item">
                                                                <a
                                                                       className="nav-link btn btn-primary"
-                                                                      href="/admin"
+                                                                      href="/signin"
                                                                >
                                                                       <i className="fas fa-user-check"></i>
                                                                       &nbsp;Get

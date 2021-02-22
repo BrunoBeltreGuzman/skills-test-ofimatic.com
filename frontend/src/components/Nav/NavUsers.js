@@ -43,7 +43,7 @@ export default function NavUsers() {
                                                                       }
                                                                >
                                                                       Logout{" "}
-                                                                      <i class="fas fa-sign-out-alt"></i>
+                                                                      <i className="fas fa-sign-out-alt"></i>
                                                                </button>
                                                         </li>
                                                         <li className="nav-item">
@@ -55,7 +55,7 @@ export default function NavUsers() {
                                                                       }
                                                                >
                                                                       Profile{" "}
-                                                                      <i class="far fa-id-badge"></i>
+                                                                      <i className="far fa-id-badge"></i>
                                                                </a>
                                                         </li>
                                                         &nbsp; &nbsp; &nbsp;

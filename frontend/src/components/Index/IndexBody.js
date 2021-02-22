@@ -15,7 +15,6 @@ export default function IndexBody() {
                                    </h1>
                             </div>
                             <br />
-                            <br />
                             <div className="row text-center">
                                    <div className="col-md-3"></div>
                                    <div className="col-md-6 p-5">

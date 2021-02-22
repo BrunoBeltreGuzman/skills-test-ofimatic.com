@@ -4,16 +4,43 @@ const router = Router();
 import InfoController from "./info-controller";
 const controllerInfo: InfoController = InfoController.getInstance();
 
-router.post("/", controllerInfo.insert);
+import JWT from "../../lib/jwt/jwt";
+import VerifyRole from "../../lib/jwt/verifyRole";
 
-router.put("/:id", controllerInfo.update);
+router.post(
+       "/",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerInfo.insert
+);
 
-router.delete("/:id", controllerInfo.delete);
+router.put(
+       "/:id",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerInfo.update
+);
 
-router.get("/", controllerInfo.findAll);
+router.delete(
+       "/:id",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerInfo.delete
+);
 
-router.get("/:id", controllerInfo.findById);
+router.get(
+       "/",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerInfo.findAll
+);
 
-router.get("/user/:user", controllerInfo.findByUser);
+router.get(
+       "/:id",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerInfo.findById
+);
+
+router.get(
+       "/user/:user",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       controllerInfo.findByUser
+);
 
 export default router;

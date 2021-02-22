@@ -1,4 +1,5 @@
 import profileRouters from "./profile-routers";
+import localSign from "../../localSign/LocalSign";
 
 class FectchProfile {
        constructor() {}
@@ -8,6 +9,7 @@ class FectchProfile {
                      method: "GET",
                      headers: {
                             "Content-type": "application/json; charset=UTF-8",
+                            authorization: localSign.getToken(),
                      },
               });
               const data = await response.json();
@@ -20,6 +22,7 @@ class FectchProfile {
                      method: "GET",
                      headers: {
                             "Content-type": "application/json; charset=UTF-8",
+                            authorization: localSign.getToken(),
                      },
               });
               const data = await response.json();
@@ -35,6 +38,7 @@ class FectchProfile {
                             headers: {
                                    "Content-type":
                                           "application/json; charset=UTF-8",
+                                   authorization: localSign.getToken(),
                             },
                      }
               );

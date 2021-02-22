@@ -9,6 +9,10 @@ import UserProfile from "../components/Users/UserProfile";
 import localSign from "../lib/localSign/LocalSign";
 
 export default function Profile(props) {
+       if (!localSign.getToken()) {
+              window.location.href = "/signin";
+       }
+
        const { user } = useParams();
 
        //temUser.temDeleteCredencials();

@@ -4,10 +4,25 @@ const router = Router();
 import ProfileController from "./profile-controller";
 const profileController: ProfileController = ProfileController.getInstance();
 
-router.get("/", profileController.findAll);
+import JWT from "../../lib/jwt/jwt";
+import VerifyRole from "../../lib/jwt/verifyRole";
 
-router.get("/id/:id", profileController.findById);
+router.get(
+       "/",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       profileController.findAll
+);
 
-router.get("/name/:name", profileController.findByName);
+router.get(
+       "/id/:id",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       profileController.findById
+);
+
+router.get(
+       "/name/:name",
+       [JWT.verifyToken, VerifyRole.isAdminOrUser],
+       profileController.findByName
+);
 
 export default router;

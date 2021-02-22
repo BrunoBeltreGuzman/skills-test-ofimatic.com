@@ -62,7 +62,10 @@ export default function SignUpForm() {
                                                                       <br />
                                                                       <br />
                                                                       <h3 className="display-4">
-                                                                             SignUp
+                                                                             {localSign.getRole() ==
+                                                                             "admin"
+                                                                                    ? "Add Users"
+                                                                                    : "SignUp"}
                                                                       </h3>
                                                                       <p className="text-secondary">
                                                                              Started
@@ -107,13 +110,23 @@ export default function SignUpForm() {
                                                                                     />
                                                                              </div>
                                                                              <br />
-                                                                             <div className="col text-center">
-                                                                                    <button className="btn btn-success">
-                                                                                           {" "}
-                                                                                           <i className="fas fa-user-plus"></i>{" "}
-                                                                                           SingUp
-                                                                                    </button>
-                                                                             </div>
+                                                                             {localSign.getRole() ==
+                                                                             "admin" ? (
+                                                                                    <div className="col text-center">
+                                                                                           <button className="btn btn-success">
+                                                                                                  <i className="fas fa-user-plus"></i>{" "}
+                                                                                                  Add
+                                                                                                  User
+                                                                                           </button>
+                                                                                    </div>
+                                                                             ) : (
+                                                                                    <div className="col text-center">
+                                                                                           <button className="btn btn-success">
+                                                                                                  <i className="fas fa-user-plus"></i>{" "}
+                                                                                                  SingUp
+                                                                                           </button>
+                                                                                    </div>
+                                                                             )}
                                                                       </form>
                                                                </div>
                                                         </div>

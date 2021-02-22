@@ -21,9 +21,25 @@ export default class VerifyRole {
               if (request.user.role[0].role === "admin") {
                      next();
               } else {
-                     response.status(401).send({
+                     return response.status(401).send({
                             isAdmin: false,
                             message: "Require Admin Role!",
+                            status: 401,
+                     });
+              }
+       }
+
+       static isAdminOrUser(request: any, response: any, next: NextFunction) {
+              console.log("Role: " + request.user.role[0].role);
+              if (
+                     request.user.role[0].role === "admin" ||
+                     request.user.role[0].role === "user"
+              ) {
+                     next();
+              } else {
+                     return response.status(401).send({
+                            isAdmin: false,
+                            message: "Require Admin or User Role!",
                             status: 401,
                      });
               }
