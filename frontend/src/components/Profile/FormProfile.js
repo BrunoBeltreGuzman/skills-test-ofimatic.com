@@ -3,9 +3,11 @@ import localSign from "../../lib/localSign/LocalSign";
 import infoFetch from "../../lib/fetch/info_users/info-fetch";
 import ReactDOM from "react-dom";
 import profileFectch from "../../lib/fetch/profile/profile-fetch";
+import imageFetch from "../../lib/fetch/image/image-fetch";
 import Socials from "./Socials";
 import Informacion from "./Informacion";
 import Contact from "./Contact";
+import Template from "./Template";
 import temUser from "../../lib/localSign/TemUser";
 import deleteAccount from "../../lib/DeleteAccount/DeleteAccount";
 import Loading from "../Partials/Loading";
@@ -28,19 +30,20 @@ async function deleteUser(user) {
 function useFectchProfile(user) {
        const [loading, setLoading] = useState([null]);
        const [error, setError] = useState([]);
-       const [data, setData] = useState([]);
+       const [datas, setData] = useState([]);
        useEffect(async function () {
               try {
                      setLoading(true);
                      const data = await profileFectch.findById(user);
-                     setData(data[0]);
+                     const data2 = await imageFetch.findByUser(user);
+                     setData([data[0], data2[0]]);
                      setLoading(false);
               } catch (error) {
                      setError(error);
                      setLoading(false);
               }
        }, []);
-       return { data, loading, error };
+       return { datas, loading, error };
 }
 
 async function saveProfile(event) {
@@ -64,6 +67,10 @@ async function saveProfile(event) {
               const facebook = event.target.facebook.value;
               const linkedin = event.target.linkedin.value;
               const github = event.target.gitHub.value;
+
+              //Template
+              const template = event.target.template.value;
+
               let user = 0;
 
               if (localSign.getRole() == "admin") {
@@ -72,7 +79,7 @@ async function saveProfile(event) {
                      user = localSign.getUserId();
               }
 
-              console.log(user);
+              console.log(template);
 
               const data = {
                      user,
@@ -87,6 +94,7 @@ async function saveProfile(event) {
                      facebook,
                      linkedin,
                      github,
+                     template,
               };
               const data2 = await infoFetch.insertData(data);
               console.log(data2);
@@ -127,13 +135,21 @@ export default function FormProfile() {
 
        console.log(user);
 
-       const { data, loading, error } = useFectchProfile(user);
+       const { datas, loading, error } = useFectchProfile(user);
 
        if (loading) {
               return <Loading></Loading>;
        }
+       if (datas[0]) {
+              const data = datas[0];
 
-       if (data) {
+              let path = "";
+              if (datas[1]) {
+                     path = "http://localhost:2000/" + datas[1].path;
+              } else {
+                     path = "../img/avatar.png";
+              }
+
               return (
                      <div>
                             <div className="container">
@@ -178,14 +194,31 @@ export default function FormProfile() {
                                                         id="profileForm"
                                                         onSubmit={saveProfile}
                                                  >
-                                                        <div className="">
+                                                        <div className="col-md-12 text-center">
                                                                <a href="">
                                                                       <img
-                                                                             src="./img/avatar.png"
+                                                                             src={
+                                                                                    path
+                                                                             }
                                                                              alt="Avatar"
-                                                                             className="avatar-4"
+                                                                             className="avatar-0"
                                                                       />
                                                                </a>
+                                                               <br />
+                                                               <br />
+                                                               {localSign.getRole() ==
+                                                               "admin" ? (
+                                                                      <span></span>
+                                                               ) : (
+                                                                      <a
+                                                                             href="/image"
+                                                                             className="btn btn-primary btn-sm"
+                                                                      >
+                                                                             <i className="fas fa-upload"></i>{" "}
+                                                                             Change
+                                                                             Photo
+                                                                      </a>
+                                                               )}
                                                                <br />
                                                                <br />
                                                         </div>
@@ -251,6 +284,9 @@ export default function FormProfile() {
                                                         <Socials
                                                                data={data}
                                                         ></Socials>
+                                                        <Template
+                                                               data={data}
+                                                        ></Template>
                                                         <br />
 
                                                         <div className="col text-center mr-5 ">

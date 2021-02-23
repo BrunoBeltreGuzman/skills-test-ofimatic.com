@@ -1,318 +1,60 @@
 import React, { useState, useEffect } from "react";
 import profileFectch from "../../lib/fetch/profile/profile-fetch";
-
+import imageFetch from "../../lib/fetch/image/image-fetch";
 import Loading from "../Partials/Loading";
 import Error from "../Partials/Error";
+import Template1 from "../Template/Template1";
+import Template2 from "../Template/Template2";
+import Template3 from "../Template/Template3";
 
 function useFectchProfile(id) {
        const [loading, setLoading] = useState([null]);
        const [error, setError] = useState([]);
-       const [data, setData] = useState([]);
+       const [datas, setData] = useState([]);
+
        useEffect(async function () {
               try {
                      setLoading(true);
                      const data = await profileFectch.findById(id);
-                     setData(data[0]);
+                     const data2 = await imageFetch.findByUser(id);
+                     setData([data[0], data2[0]]);
                      setLoading(false);
               } catch (error) {
                      setError(error);
                      setLoading(false);
               }
        }, []);
-       return { data, loading, error };
+       return { datas, loading, error };
 }
+
 export default function UserProfile(props) {
-       const { data, loading, error } = useFectchProfile(props.user);
-
-       const avatar2 = {
-              verticalAlign: "middle",
-              width: "130px",
-              height: "130px",
-              borderRadius: "50%",
-       };
-
-       const textProfile = {
-              fontSize: "22px",
-       };
-
-       const subra = {
-              textDecoration: "underline rgb(30, 30, 30)",
-       };
-
-       const socials = {
-              fontSize: "30px",
-       };
+       const { datas, loading, error } = useFectchProfile(props.user);
 
        if (loading) {
               return <Loading></Loading>;
        }
 
-       if (data) {
-              return (
-                     <div>
-                            <div className="row">
-                                   <div className="col-md-4">
-                                          <div className="">
-                                                 <a target="_blank" href="">
-                                                        <img
-                                                               src="../img/avatar.png"
-                                                               alt="Avatar"
-                                                               style={avatar2}
-                                                        />
-                                                 </a>
-                                          </div>
-                                          <br />
-                                   </div>
-                                   <div className="col-md-8 text-left">
-                                          <div className="row">
-                                                 <div className="col-md-9">
-                                                        <h3 className="">
-                                                               <strong>
-                                                                      {
-                                                                             data.name
-                                                                      }
-                                                               </strong>
-                                                        </h3>
-                                                        {data.work != "" &&
-                                                        data.work != null &&
-                                                        data.work != "null" ? (
-                                                               <h6 className="text-secondary">
-                                                                      <strong>
-                                                                             <i className="fas fa-briefcase"></i>{" "}
-                                                                             {
-                                                                                    data.work
-                                                                             }
-                                                                      </strong>
-                                                               </h6>
-                                                        ) : (
-                                                               <span></span>
-                                                        )}
+       if (datas[0]) {
+              const data = datas[0];
 
-                                                        {data.pais != "" &&
-                                                        data.pais != null &&
-                                                        data.pais != "null" ? (
-                                                               <h6 className="text-secondary">
-                                                                      <i className="fas fa-map-marker-alt"></i>{" "}
-                                                                      {
-                                                                             data.pais
-                                                                      }
-                                                               </h6>
-                                                        ) : (
-                                                               <span></span>
-                                                        )}
+              let path = "";
+              if (datas[1]) {
+                     path = "http://localhost:2000/" + datas[1].path;
+              } else {
+                     path = "../img/avatar.png";
+              }
 
-                                                        {data.blog != "" &&
-                                                        data.blog != null &&
-                                                        data.blog != "null" ? (
-                                                               <a
-                                                                      target="_blank"
-                                                                      href={
-                                                                             data.blog
-                                                                      }
-                                                                      className="btn btn-sm btn-primary"
-                                                               >
-                                                                      View my
-                                                                      blog{" "}
-                                                                      <i className="fas fa-external-link-alt"></i>
-                                                               </a>
-                                                        ) : (
-                                                               <span></span>
-                                                        )}
-                                                 </div>
-                                                 <div className="col-md-3">
-                                                        <div className="text-right">
-                                                               <div className="col text-right dropdown ">
-                                                                      <button
-                                                                             className="btn btn-light"
-                                                                             type="button"
-                                                                             id="dropdownMenuButton"
-                                                                             data-toggle="dropdown"
-                                                                             aria-haspopup="true"
-                                                                             aria-expanded="false"
-                                                                      >
-                                                                             <i className="fas fa-ellipsis-v"></i>
-                                                                      </button>
-                                                                      <div
-                                                                             className="dropdown-menu"
-                                                                             aria-labelledby="dropdownMenuButton"
-                                                                      >
-                                                                             <a className="dropdown-item">
-                                                                                    <span className="feedback">
-                                                                                           &#128077;
-                                                                                    </span>
-                                                                                    Like
-                                                                             </a>
-                                                                             <a className="dropdown-item">
-                                                                                    <span className="feedback">
-                                                                                           &#128078;
-                                                                                    </span>
-                                                                                    DisLike
-                                                                             </a>
-                                                                      </div>
-                                                               </div>
-                                                        </div>
-                                                 </div>
-                                          </div>
-                                   </div>
-                            </div>
-                            <div>
-                                   <br />
-                                   {data.descripcion != "" &&
-                                   data.descripcion != null &&
-                                   data.descripcion != "null" ? (
-                                          <p
-                                                 className="text-left"
-                                                 style={textProfile}
-                                          >
-                                                 {data.descripcion}
-                                          </p>
-                                   ) : (
-                                          <span></span>
-                                   )}
+              if (datas[0].template == 1) {
+                     return <Template1 data={data} path={path}></Template1>;
+              }
 
-                                   <div className="row">
-                                          <div className="col-md-6">
-                                                 {data.work != "" &&
-                                                 data.work != null &&
-                                                 data.work != "null" ? (
-                                                        <div>
-                                                               <h6
-                                                                      style={
-                                                                             subra
-                                                                      }
-                                                               >
-                                                                      <strong>
-                                                                             Work
-                                                                      </strong>
-                                                               </h6>
-
-                                                               <h6 className="">
-                                                                      <strong>
-                                                                             <i className="fas fa-briefcase"></i>{" "}
-                                                                             {
-                                                                                    data.work
-                                                                             }
-                                                                      </strong>
-                                                               </h6>
-                                                        </div>
-                                                 ) : (
-                                                        <span></span>
-                                                 )}
-                                          </div>
-                                          <div className="col-md-6">
-                                                 {data.skill != "" &&
-                                                 data.skill != null &&
-                                                 data.skill != "null" ? (
-                                                        <div>
-                                                               <h6
-                                                                      style={
-                                                                             subra
-                                                                      }
-                                                               >
-                                                                      <strong>
-                                                                             Skill
-                                                                      </strong>
-                                                               </h6>
-
-                                                               <h6 className="">
-                                                                      <strong>
-                                                                             <i className="fas fa-dot-circle"></i>{" "}
-                                                                             {
-                                                                                    data.skill
-                                                                             }
-                                                                      </strong>
-                                                               </h6>
-                                                        </div>
-                                                 ) : (
-                                                        <span></span>
-                                                 )}
-                                          </div>
-                                   </div>
-                                   <br />
-                                   <div className="text-center">
-                                          {data.facebook != "" &&
-                                          data.facebook != null &&
-                                          data.facebook != "null" ? (
-                                                 <a
-                                                        target="_blank"
-                                                        href={data.facebook}
-                                                        className="btn btn-sm btn-light socials"
-                                                        style={socials}
-                                                        data-bs-toggle="tooltip"
-                                                        data-bs-placement="bottom"
-                                                        title="facebook"
-                                                 >
-                                                        <div className="">
-                                                               <i className="m fab fa-facebook"></i>
-                                                        </div>
-                                                 </a>
-                                          ) : (
-                                                 <div></div>
-                                          )}
-                                          {data.linkedin != "" &&
-                                          data.linkedin != null &&
-                                          data.linkedin != "null" ? (
-                                                 <a
-                                                        target="_blank"
-                                                        href={data.linkedin}
-                                                        className="btn btn-sm btn-light socials"
-                                                        style={socials}
-                                                        data-bs-toggle="tooltip"
-                                                        data-bs-placement="bottom"
-                                                        title="linkedin"
-                                                 >
-                                                        <i className="fab fa-linkedin"></i>
-                                                 </a>
-                                          ) : (
-                                                 <span></span>
-                                          )}
-                                          {data.github != "" &&
-                                          data.github != null &&
-                                          data.github != "null" ? (
-                                                 <a
-                                                        target="_blank"
-                                                        href={data.github}
-                                                        className="btn btn-sm btn-light socials"
-                                                        style={socials}
-                                                        data-bs-toggle="tooltip"
-                                                        data-bs-placement="bottom"
-                                                        title="github"
-                                                 >
-                                                        <i className="fab fa-github-square"></i>
-                                                 </a>
-                                          ) : (
-                                                 <span></span>
-                                          )}
-                                          <br /> <br />
-                                          {data.email != "" &&
-                                          data.email != null &&
-                                          data.email != "null" ? (
-                                                 <h6>
-                                                        <strong>
-                                                               {data.email}
-                                                        </strong>
-                                                 </h6>
-                                          ) : (
-                                                 <span></span>
-                                          )}
-                                          {data.telefono != "" &&
-                                          data.telefono != null &&
-                                          (data.telefono != "null") != "" ? (
-                                                 <h6>{data.telefono}</h6>
-                                          ) : (
-                                                 <div></div>
-                                          )}
-                                          <br />
-                                   </div>
-                            </div>
-                            <div>
-                                   <p className="text-secondary">
-                                          © Admin CRUD 2021 - All Copyright
-                                          Reserved
-                                   </p>
-                            </div>
-                     </div>
-              );
+              if (datas[0].template == 2) {
+                     return <Template2 data={data} path={path}></Template2>;
+              }
+              if (datas[0].template == 3) {
+                     return <Template3 data={data} path={path}></Template3>;
+              }
+              return <Template1 data={data} path={path}></Template1>;
        }
        if (error) {
               return <Error error={error}></Error>;

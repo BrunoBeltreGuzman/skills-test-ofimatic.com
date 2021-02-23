@@ -1,6 +1,7 @@
 import React from "react";
 import signFetch from "../../lib/fetch/sign/sing-fetch";
 import localSign from "../../lib/localSign/LocalSign";
+import imageFectch from "../../lib/fetch/image/image-fetch";
 
 async function singIn(event) {
        try {
@@ -17,6 +18,10 @@ async function singIn(event) {
                             data.token,
                             data.role[0].role
                      );
+                     const pathImage = await imageFectch.getPathImage(
+                            data.user.id
+                     );
+                     localSign.setPathImage(pathImage);
                      window.location.href = "/home";
               } else {
                      alert(data.message);

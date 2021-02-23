@@ -57,7 +57,7 @@ export default function NavAdmin() {
                                                                              className="dropdown-item"
                                                                              href="/signup"
                                                                       >
-                                                                             <i class="fas fa-user-plus"></i>{" "}
+                                                                             <i className="fas fa-user-plus"></i>{" "}
                                                                              Add
                                                                              User
                                                                       </a>
@@ -66,7 +66,7 @@ export default function NavAdmin() {
                                                                              className="dropdown-item"
                                                                              href="/admin"
                                                                       >
-                                                                             <i class="fas fa-users-cog"></i>{" "}
+                                                                             <i className="fas fa-users-cog"></i>{" "}
                                                                              List
                                                                              Users
                                                                       </a>
@@ -80,7 +80,7 @@ export default function NavAdmin() {
                                                                       }
                                                                >
                                                                       Logout{" "}
-                                                                      <i class="fas fa-sign-out-alt"></i>
+                                                                      <i className="fas fa-sign-out-alt"></i>
                                                                </button>
                                                         </li>
                                                  </ul>

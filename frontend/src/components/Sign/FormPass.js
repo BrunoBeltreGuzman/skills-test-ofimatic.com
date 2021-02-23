@@ -85,7 +85,7 @@ export default function FormPass() {
                                                                <br />
                                                                <div className="col text-center">
                                                                       <button className="btn btn-danger">
-                                                                             <i class="fas fa-key"></i>{" "}
+                                                                             <i className="fas fa-key"></i>{" "}
                                                                              Change
                                                                       </button>
                                                                </div>

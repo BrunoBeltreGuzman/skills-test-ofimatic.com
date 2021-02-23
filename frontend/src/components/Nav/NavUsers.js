@@ -67,7 +67,7 @@ export default function NavUsers() {
                                                                              }
                                                                       >
                                                                              <img
-                                                                                    src="img/avatar.png"
+                                                                                    src={localSign.getPathImage()}
                                                                                     alt="Avatar"
                                                                                     className="avatar-nav"
                                                                              />

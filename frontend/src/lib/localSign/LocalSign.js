@@ -25,6 +25,28 @@ class LocalSign {
        getRole() {
               return localStorage.getItem("role");
        }
+
+       /*
+              Image
+       */
+       setPathImage(path) {
+              localStorage.setItem("pathImage", path);
+       }
+
+       getPathImage() {
+              if (localStorage.getItem("pathImage")) {
+                     return (
+                            "http://localhost:2000/" +
+                            localStorage.getItem("pathImage")
+                     );
+              } else {
+                     return "./img/avatar.png";
+              }
+       }
+
+       deletePathImage() {
+              localStorage.removeItem("pathImage");
+       }
 }
 
 export default new LocalSign();

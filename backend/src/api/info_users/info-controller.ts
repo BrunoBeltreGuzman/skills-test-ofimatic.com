@@ -33,6 +33,7 @@ export default class InfoController implements IContoller<Request, Response> {
               const facebook: string = request.body.facebook;
               const linkedin: string = request.body.linkedin;
               const github: string = request.body.github;
+              const template: number = parseInt(request.body.template);
 
               if (validator.isNumber(request.body.user)) {
                      user = parseInt(request.body.user);
@@ -58,6 +59,7 @@ export default class InfoController implements IContoller<Request, Response> {
                             facebook,
                             linkedin,
                             github,
+                            template,
                      };
                      const result = await modelInfo.insert(newInfo);
                      return response.status(200).json(result);
@@ -81,7 +83,7 @@ export default class InfoController implements IContoller<Request, Response> {
               const facebook: string = request.body.facebook;
               const linkedin: string = request.body.linkedin;
               const github: string = request.body.github;
-
+              const template: number = parseInt(request.body.template);
               if (
                      validator.isNumber(request.params.id) &&
                      validator.isNumber(request.body.user)
@@ -109,6 +111,7 @@ export default class InfoController implements IContoller<Request, Response> {
                             facebook,
                             linkedin,
                             github,
+                            template,
                      };
                      const result = await modelInfo.update(newInfo);
                      return response.status(200).json(result);

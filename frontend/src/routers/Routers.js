@@ -15,6 +15,7 @@ import Profile from "../pages/Profile";
 import ConfiProfile from "../pages/ConfiProfile";
 import Password from "../pages/Password";
 import NotFound from "../pages/NotFound";
+import Image from "../pages/Image";
 
 export default function router() {
        return (
@@ -54,6 +55,11 @@ export default function router() {
                                    {/* Change PassWord */}
                                    <Route exact path="/password">
                                           <Password></Password>
+                                   </Route>
+
+                                   {/* Image */}
+                                   <Route exact path="/image">
+                                          <Image></Image>
                                    </Route>
 
                                    {/* Profile */}

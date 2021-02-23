@@ -10,4 +10,5 @@ export default interface Info {
        facebook: string;
        linkedin: string;
        github: string;
+       template: number;
 }

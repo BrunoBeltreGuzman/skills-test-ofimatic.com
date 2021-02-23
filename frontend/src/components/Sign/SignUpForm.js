@@ -9,10 +9,8 @@ async function singUp(event) {
               const email = event.target.email.value;
               const password = event.target.password.value;
               console.log(name, email, password);
-
               const data = await signFetch.signup(name, email, password);
               console.log(data);
-
               if (data.insertId) {
                      resetForm(1500);
                      alert("SingUp successfully");

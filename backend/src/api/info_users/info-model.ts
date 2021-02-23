@@ -1,5 +1,4 @@
 import ConnectinMySQL from "../../database/connectinMySQL/ConnectinMySQL";
-import { Pool } from "mysql2/promise";
 import Info from "./info";
 import IDAOSkills from "./IDAOInfo";
 
@@ -36,7 +35,7 @@ export default class InfoModel implements IDAOSkills {
               try {
                      const result = await this.connectinMySQL.query({
                             sql:
-                                   "INSERT INTO info_users (user, descripcion, work, skill, pais, telefono, blog, facebook, linkedin, github) values (?,?,?,?,?,?,?,?,?,?)",
+                                   "INSERT INTO info_users (user, descripcion, work, skill, pais, telefono, blog, facebook, linkedin, github, template) values (?,?,?,?,?,?,?,?,?,?,?)",
                             values: [
                                    entity.user,
                                    entity.description,
@@ -48,6 +47,7 @@ export default class InfoModel implements IDAOSkills {
                                    entity.facebook,
                                    entity.linkedin,
                                    entity.github,
+                                   entity.template,
                             ],
                      });
 
@@ -61,7 +61,7 @@ export default class InfoModel implements IDAOSkills {
               try {
                      const result = await this.connectinMySQL.query({
                             sql:
-                                   "UPDATE info_users set user = ?, descripcion = ?, work = ?, skill = ?,pais = ?, telefono = ?, blog = ?, facebook = ?, linkedin = ?, github = ? WHERE id = ? ",
+                                   "UPDATE info_users set user = ?, descripcion = ?, work = ?, skill = ?,pais = ?, telefono = ?, blog = ?, facebook = ?, linkedin = ?, github = ?, template = ? WHERE id = ? ",
                             values: [
                                    entity.user,
                                    entity.description,
@@ -73,6 +73,7 @@ export default class InfoModel implements IDAOSkills {
                                    entity.facebook,
                                    entity.linkedin,
                                    entity.github,
+                                   entity.template,
                                    entity.id,
                             ],
                      });
