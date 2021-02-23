@@ -1,3 +1,91 @@
+# Requerimientos del backend:
+
+**Sistema:**
+
+1. node
+
+2. npm
+
+3. typescript
+
+**Instalacion:**
+
+1.node: https://nodejs.org/es/
+
+2.npm: https://www.npmjs.com/
+
+3.typescript:
+https://www.typescriptlang.org/
+
+**Dependencias:**
+
+Dependencies:
+
+1. bcrypt
+2. cors
+3. express
+4. fs-extra
+5. jsonwebtoken
+6. multer
+7. mysql2
+8. uuid
+
+DevDependencies:
+
+1. @types/cors
+1. @types/express
+1. @types/fs-extra
+1. @types/jsonwebtoken
+1. @types/morgan
+1. @types/multer
+1. @types/mysql
+1. @types/node
+1. @types/uuid
+1. morgan
+1. tsc-watch
+1. typescript
+
+**Instalacion:**
+
+```console
+npm i || npm install
+```
+
+# Requerimientos del frotend:
+
+**Sistema:**
+
+1. node
+
+2. npm
+
+**Instalacion:**
+
+1.node: "https://nodejs.org/es/"
+
+2.npm: "https://www.npmjs.com/"
+
+**Dependencias:**
+
+1. @testing-library/jest-dom
+2. @testing-library/react
+3. @testing-library/user-event
+4. axios
+5. react
+6. react-dom
+7. react-router-dom
+8. react-scripts
+9. timeago.js
+10. web-vitals
+
+**Instalacion:**
+
+```console
+npm i || npm install
+```
+
+Mas informacion en la carpeta `docs`
+
 # Backend Admin Crud
 
 **Estructuras de Carpetas Backend**
@@ -92,7 +180,6 @@ _Y otras rutas mas adicinales_
 ![Image](https://github.com/BrunoBeltreGuzman/skills-test-ofimatic.com/blob/master/partials/ScreenshotFrontend/Captura%20de%20pantalla_2021-02-21_18-22-26.png)
 
 ![Image](https://github.com/BrunoBeltreGuzman/skills-test-ofimatic.com/blob/master/partials/ScreenshotFrontend/Captura%20de%20pantalla_2021-02-21_18-29-13.png)
-
 
 **Rputers ReactJS**
 
